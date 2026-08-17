@@ -82,3 +82,13 @@ push_swap/
     ├── checker_parse.c             # reuses src/parse's validation rules — don't reinvent them
     └── checker_exec.c              # reads stdin instructions, executes them, prints OK/KO/Error
 
+
+Command         Condition   Action / Output     Return Value
+./push_swap,    argc < 2    Does nothing        0
+"./push_swap """"",Empty string,"Prints ""Error\n""",0
+"./push_swap ""42""",Valid single number,Does nothing,0
+"./push_swap ""+42""",Valid signed single number,Does nothing,0
+"./push_swap ""42a""",Contains non-digits,"Prints ""Error\n""",0
+"./push_swap ""+""",Sign without numbers,"Prints ""Error\n""",0
+"./push_swap ""1 2 3""",Multiple numbers,Proceed to split/parse,1
+./push_swap 1 2 3,argc >= 3,Proceed to parse argv,1

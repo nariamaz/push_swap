@@ -6,24 +6,30 @@
 #    By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 15:56:40 by maridos-          #+#    #+#              #
-#    Updated: 2026/08/16 22:31:59 by maridos-         ###   ########.fr        #
+#    Updated: 2026/08/16 22:36:41 by maridos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:=	libft.a
+NAME		:=	push_swap
 CC			:=	cc
 CFLAGS		:=	-Wall -Wextra -Werror
 MAKEFLAGS	:=	--silent
 AR			:=	ar -rcs
 RM			:=	rm -rf
 
-SRCS		:= 	src/ft_calloc.c \
-				src/ft_isdigit.c \
-				src/ft_putstr_fd.c \
-				src/ft_split.c \
-				src/ft_strdup.c \
-				src/ft_strlen.c 
+SRCS		:= 	libft/src/ft_calloc.c \
+				libft/src/ft_isdigit.c \
+				libft/src/ft_putstr_fd.c \
+				libft/src/ft_split.c \
+				libft/src/ft_strdup.c \
+				libft/src/ft_strlen.c \
+				libft/src/ft_strlcpy.c \
+				libft/src/ft_memcpy.c \
+				src/main.c
 				
+# HEADERS		:= libft/libft.h \
+# 			   include/push_swap.h \
+# 			   include/error.h
 
 OBJS := $(SRCS:.c=.o)
 
@@ -31,11 +37,11 @@ OBJS := $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-		$(AR) $(NAME) $(OBJS)
+$(NAME): $(SRCS)
+		$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+# %.o: %.c
+# 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)

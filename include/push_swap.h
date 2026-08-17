@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/15 15:56:56 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/16 22:07:36 by maridos-         ###   ########.fr       */
+/*   Created: 2026/08/16 14:14:39 by maridos-          #+#    #+#             */
+/*   Updated: 2026/08/16 22:10:54 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <unistd.h>
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-void	*ft_calloc(size_t nmemb, size_t size);
-char	**ft_split(char const *str, char ch);
-char	*ft_strdup(const char *s);
-int	    ft_isdigit(int c); 
-void	ft_putstr_fd(char *s, int fd); 
-void	*ft_memcpy(void *dest, const void *src, size_t n); 
-size_t	ft_strlcpy(char *dest, const char *src, size_t dest_size); 
-size_t	ft_strlen(const char *s); 
+# include "../libft/libft.h"
 
+/* PARSER */
+int has_multiple_numbers(char* str);
+int	validate_nb_args(int argc, char **argv);
+
+
+#endif
