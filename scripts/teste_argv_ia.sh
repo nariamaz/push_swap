@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EXECFILE=./push_swap
+EXECFILE=../push_swap
 
 # Colors for scannable test results
 GREEN="\033[0;32m"

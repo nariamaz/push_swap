@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 15:56:40 by maridos-          #+#    #+#              #
-#    Updated: 2026/08/16 22:31:59 by maridos-         ###   ########.fr        #
+#    Updated: 2026/08/17 22:14:41 by maridos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ SRCS		:= 	src/ft_calloc.c \
 				src/ft_putstr_fd.c \
 				src/ft_split.c \
 				src/ft_strdup.c \
-				src/ft_strlen.c 
-				
+				src/ft_strlen.c \
+				src/ft_strjoin.c
 
 OBJS := $(SRCS:.c=.o)
 
