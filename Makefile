@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+         #
+#    By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 15:56:40 by maridos-          #+#    #+#              #
-#    Updated: 2026/08/17 22:44:26 by maridos-         ###   ########.fr        #
+#    Updated: 2026/08/24 00:49:35 by maridos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	push_swap
 CC			:=	cc
-CFLAGS		:=	-Wall -Wextra -Werror
+CFLAGS		:=	-Wall -Wextra -Werror -g
 LIBFT_DIR	= 	libft
 LIBFT		= 	$(LIBFT_DIR)/libft.a
 INCLUDES  	 = -Iinclude -I$(LIBFT_DIR)
@@ -20,22 +20,12 @@ MAKEFLAGS	:=	--silent
 AR			:=	ar -rcs
 RM			:=	rm -rf
 
-# SRCS		:= 	libft/src/ft_calloc.c \
-# 				libft/src/ft_isdigit.c \
-# 				libft/src/ft_putstr_fd.c \
-# 				libft/src/ft_split.c \
-# 				libft/src/ft_strdup.c \
-# 				libft/src/ft_strlen.c \
-# 				libft/src/ft_strlcpy.c \
-# 				libft/src/ft_memcpy.c \
-# 				libft/src/ft_strjoin.c \
-# 				src/main.c
-
 DIR_PARSE = src/parse/
 
 # Arquivos
 SRC_MAIN = src/main.c
-SRC_PARSE = $(DIR_PARSE)valid_args.c
+SRC_PARSE = $(DIR_PARSE)validation.c \
+			$(DIR_PARSE)count_nb_args.c
 
 # Junção de todos os arquivos fonte
 SRCS = $(SRC_MAIN) $(SRC_PARSE)
@@ -47,7 +37,12 @@ all: $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(NAME): $(LIBFT) $(OBJS)
+.PHONY: all clean fclean re libft
+
+libft:
+	$(MAKE) -C $(LIBFT_DIR)
+	
+$(NAME): libft $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 %.o: %.c
@@ -63,4 +58,3 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re

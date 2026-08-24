@@ -100,4 +100,58 @@ run_test_unquoted "2 1 3 6 58" 0
 run_test_unquoted "1 2 a 4" 1
 run_test_unquoted "1 + 2" 1
 
+# 9. Single valid flags alone -> Error
+run_test_quoted "--bench" 1
+run_test_quoted "--simple" 1
+run_test_quoted "--medium" 1
+run_test_quoted "--complex" 1
+run_test_quoted "--adaptive" 1
+
+# 10. Invalid flag names -> Error
+run_test_quoted "--random" 1
+run_test_quoted "--" 1
+run_test_quoted "-bench" 1          # single dash, not a valid flag prefix nor a number
+
+# 11. Flag prefix collision (word-boundary check) -> Error
+run_test_quoted "--BENCH42" 1       # "BENCH" matches as prefix, but next char isn't space/'\0'
+run_test_quoted "--COMPLEXITY" 1    # "COMPLEX" matches as prefix, "ITY" breaks the boundary
+
+# 12. Multiple valid flags together -> Silent return 0
+run_test_quoted "--bench --simple" 1
+run_test_quoted "--bench --simple --medium --complex --adaptive" 1
+
+# 13. Duplicate flags -> Silent return 0 (counted twice, not an error per current design)
+run_test_quoted "--bench --bench" 1
+
+# 14. Flags combined with valid numbers -> Silent return 0
+run_test_quoted "--bench 1 2 3" 0
+run_test_quoted "1 --bench 2" 0
+run_test_quoted "--simple --medium 5 -5 42" 1
+run_test_quoted "--adaptive -2147483648 2147483647" 0
+
+# 15. Flags combined with invalid numbers -> Error
+run_test_quoted "--bench 5a" 1
+run_test_quoted "--bench 1 2 a" 1
+run_test_quoted "--bench ++5" 1
+
+# 16. Integer boundary values (INT_MIN / INT_MAX) -> Silent return 0
+run_test_quoted "2147483647" 0
+run_test_quoted "-2147483648" 0
+
+# 17. Integer overflow / underflow -> Error
+run_test_quoted "2147483648" 1
+run_test_quoted "-2147483649" 1
+run_test_quoted "99999999999999" 1
+
+# 18. Two-dash sequence not matching a known flag -> Error
+run_test_quoted "--5" 1             # "--" triggers flag parsing, "5" isn't a valid flag name
+
+# 19. Unquoted flags mixed with numbers (argc > 2) -> Silent return 0
+run_test_unquoted "--bench 1 2 3" 0
+run_test_unquoted "1 --simple 2 --medium 3" 1
+
+# 20. Unquoted invalid flag + numbers -> Error
+run_test_unquoted "--bench 1 2 x" 1
+run_test_unquoted "--notaflag 1 2 3" 1
+
 echo "=========================================="
