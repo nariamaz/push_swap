@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 14:14:39 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/24 02:34:05 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/08/24 17:56:55 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,21 @@ typedef struct s_state
     int counter [FLAG_COUNT];
 }   t_state;
 
-/* PARSER */
-int has_multiple_numbers(char* str);
-int	validate_nb_args(int argc, char **argv);
-char* ft_join_args(int argc, char** argv);
+/* ARGUMENT DISPATCH */
+int		ft_is_blank(char *str);
+int		ft_parse_arguments(int argc, char **argv, t_state *flag);
+int     ft_has_number(char *argv);
 
 /* VALIDATION NUMBER AND FLAGS*/
-int ft_strncmp(const char *s1, const char *s2, size_t n);
-int ft_parsing(char *string, t_state *flag);
-int ft_validate_number(char **string);
-long ft_atol(char **str);
-int ft_check_overflow(long value);
-int ft_validate_flag(char* str, t_state *flag);
-int ft_check_duplicity(t_state *flag);
+int     ft_strncmp(const char *s1, const char *s2, size_t n);
+int     ft_parsing(char *string, t_state *flag);
+long    ft_atol(char **str);
+int     ft_check_duplicity(t_state *flag);
+int     ft_check_overflow(long value);
+int     ft_validate_number(char **string);
+int     ft_validate_flag(char *str, t_state *flag);
 
 /* ERROR */
-int ft_print_error();
+int     ft_print_error();
 
 #endif

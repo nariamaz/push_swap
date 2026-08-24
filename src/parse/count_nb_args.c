@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 21:52:52 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/23 20:54:30 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/08/24 17:59:07 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,79 +18,43 @@ int ft_print_error()
     return (0);
 }
 
-int	validate_nb_args(int argc, char **argv)
+int	ft_is_blank(char *str)
 {
-	int	j;
-
+	while (*str == ' ')
+		str++;
+	return (*str == '\0');
+}
+ 
+int	ft_parse_arguments(int argc, char **argv, t_state *flag)
+{
+	int	i;
+    int found_number;
+ 
 	if (argc < 2)
-		return (0);
-	if (argc == 2)
+		return (1);
+    found_number = 0;
+	i = 1;
+	while (i < argc)
 	{
-		if (argv[1][0] == '\0')
-            return(ft_print_error());
-		if (has_multiple_numbers(argv[1]))
-			return (1);
-		j = 0;
-		if (argv[1][j] == '+' || argv[1][j] == '-')
-			j++;
-		if (!argv[1][j])
-            return(ft_print_error());
-		while (argv[1][j])
-		{
-			if (!ft_isdigit(argv[1][j]))
-                return(ft_print_error());
-			j++;
-		}
-		return (0);
+		if (ft_is_blank(argv[i]))
+			return (ft_print_error());
+		if (!ft_parsing(argv[i], flag))
+			return (0);
+        if (ft_has_number(argv[i]))
+            found_number = 1;
+		i++;
 	}
+    if (!found_number)
+        return (ft_print_error());
     return (1);
 }
-int has_multiple_numbers(char* str)
+int ft_has_number(char *argv)
 {
-    int space;
-    int numbers;
-    int i;
-
-    space = 0;
-    numbers = 0;
-    i = 0;
-    while (str[i])
+    while (*argv != '\0')
     {
-        if (ft_isdigit(str[i]))
-        {
-            numbers++;
-            while (str[i] && ft_isdigit(str[i]))
-                i++;
-        }
-        else
-        {
-            if (str[i] == ' ')
-                space++;
-            i++;
-        }
+        if (ft_isdigit(*argv))
+            return (1);
+        argv++; 
     }
-    if (space >=1 && numbers >= 2)
-        return (1);
-    return (0);
-}
-
-char* ft_join_args(int argc, char** argv)
-{
-    int i;
-    char* full_str;
-    char* tmp;
-
-    full_str = NULL;
-    i = 1;
-    while (i < argc)
-    {
-        tmp = full_str;
-        full_str = ft_strjoin(tmp, argv[i]);
-        free (tmp);
-        tmp = full_str;
-        full_str = ft_strjoin (tmp, " ");
-        free(tmp);
-        i++;
-    }
-    return (full_str);
+    return (0); 
 }
