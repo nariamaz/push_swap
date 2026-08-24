@@ -6,7 +6,7 @@
 #    By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 15:56:40 by maridos-          #+#    #+#              #
-#    Updated: 2026/08/24 00:49:35 by maridos-         ###   ########.fr        #
+#    Updated: 2026/08/24 19:46:31 by maridos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,19 @@ MAKEFLAGS	:=	--silent
 AR			:=	ar -rcs
 RM			:=	rm -rf
 
+# Diretórios
 DIR_PARSE = src/parse/
+DIR_ERROR = src/error/
 
 # Arquivos
 SRC_MAIN = src/main.c
-SRC_PARSE = $(DIR_PARSE)validation.c \
-			$(DIR_PARSE)count_nb_args.c
+SRC_PARSE = $(DIR_PARSE)dispatcher.c \
+			$(DIR_PARSE)flags.c \
+			$(DIR_PARSE)numbers.c
+SRC_ERROR = $(DIR_ERROR)error.c
 
 # Junção de todos os arquivos fonte
-SRCS = $(SRC_MAIN) $(SRC_PARSE)
+SRCS = $(SRC_MAIN) $(SRC_PARSE) $(SRC_ERROR)
 
 OBJS := $(SRCS:.c=.o)
 

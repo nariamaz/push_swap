@@ -6,25 +6,12 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 21:52:52 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/24 17:59:07 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/08/24 19:29:59 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int ft_print_error()
-{
-    ft_putstr_fd("Error\n", 2);
-    return (0);
-}
-
-int	ft_is_blank(char *str)
-{
-	while (*str == ' ')
-		str++;
-	return (*str == '\0');
-}
- 
 int	ft_parse_arguments(int argc, char **argv, t_state *flag)
 {
 	int	i;
@@ -48,6 +35,41 @@ int	ft_parse_arguments(int argc, char **argv, t_state *flag)
         return (ft_print_error());
     return (1);
 }
+
+int ft_parsing(char *string, t_state *flag)
+{
+    while (*string != '\0')
+    {
+        while (*string == ' ')
+            string++;
+        if (*string == '\0')
+            break ;
+        if (*string == '-' && *(string + 1) == '-')
+        {
+            string += 2;
+            if (!ft_validate_flag(string, flag))
+                return (0);
+            while (*string != ' ' && *string != '\0')
+                string++;
+        }
+        else if (*string == '+' || *string == '-' || ft_isdigit(*string))
+        {
+            if (!ft_validate_number(&string))
+                return (0);
+        }
+        else
+            return (ft_print_error());
+    }
+    return (1);
+}
+
+int	ft_is_blank(char *str)
+{
+	while (*str == ' ')
+		str++;
+	return (*str == '\0');
+}
+
 int ft_has_number(char *argv)
 {
     while (*argv != '\0')
