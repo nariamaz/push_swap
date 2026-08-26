@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_nb_args.c                                    :+:      :+:    :+:   */
+/*   dispatcher.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 21:52:52 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/24 19:29:59 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/08/24 23:56:05 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int ft_parsing(char *string, t_state *flag)
         }
         else if (*string == '+' || *string == '-' || ft_isdigit(*string))
         {
-            if (!ft_validate_number(&string))
+            if (!ft_validate_number(&string, flag))
                 return (0);
         }
         else

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 22:58:58 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/24 19:29:42 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/08/25 19:04:29 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int     ft_strncmp(const char *s1, const char *s2, size_t n)
         return (0);
     return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }    
-
-
 
 int ft_validate_flag(char* str, t_state *flag)
 {
