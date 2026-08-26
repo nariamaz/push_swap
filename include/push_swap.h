@@ -13,8 +13,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft.h"
-#include <limits.h>
+# include "../libft/libft.h"
+# include <limits.h>
 
 typedef enum e_flags 
 {
@@ -48,5 +48,14 @@ int     ft_validate_flag(char *str, t_state *flag);
 
 /* ERROR */
 int     ft_print_error();
+
+/* STACK NODE CIRCULAR LIST */
+typedef struct	s_stack t_stack;
+
+struct s_stack {
+	int		content;
+	t_stack	*next;
+	t_stack	*prev;
+};
 
 #endif
