@@ -6,7 +6,7 @@
 /*   By: hequeiro <hequeiro@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 14:32:33 by hequeiro          #+#    #+#             */
-/*   Updated: 2026/08/27 17:04:24 by hequeiro         ###   ########.fr       */
+/*   Updated: 2026/08/27 18:08:41 by hequeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ int	main(void)
 	printf("\tsearch: 20\n");
 	printf("\tresult: true\n\n");
 	assert(check_duplicate_n(list, 20) == true);
-	
+
 	printf("14.\tlist: [10, 20, 30]\n");
 	printf("\tsearch: 30\n");
 	printf("\tresult: true\n\n");
@@ -184,8 +184,51 @@ int	main(void)
 	printf("\tsearch: -10\n");
 	printf("\tresult: true\n\n");
 	assert(check_duplicate_n(list, -10) == true);
-	
+
 	clean_list(&list);
 	assert(list == NULL);
+
+	printf("===== Operations Tests =====\n\n");
+
+	printf("17. SA with empty list: ");
+	sa(&list);
+	assert(list == NULL);
+	assert(check_list_integrity(list));
+	printf("OK\n");
+
+	add_to_list(&list, 10);
+	printf("18. SA with 1 Node: ");
+	sa(&list);
+	assert(list->content == 10);
+	assert(check_list_integrity(list));
+	printf("OK\n");
+
+	add_to_list(&list, 20);
+	printf("19. SA with 2 Nodes: ");
+	sa(&list);
+	assert(list->content == 20);
+	assert(list->next->content == 10);
+	assert(check_list_integrity(list));
+	clean_list(&list);
+	assert(list == NULL);
+	printf("OK\n");
+
+	add_to_list(&list, 10);
+	add_to_list(&list, 20);
+	add_to_list(&list, 30);
+	printf("20. SA and SB with 2+ Nodes: ");
+	sa(&list);
+	assert(list->content == 20);
+	assert(list->next->content == 10);
+	assert(list->next->next->content == 30);
+	sb(&list);
+	assert(list->content == 10);
+	assert(list->next->content == 20);
+	assert(list->next->next->content == 30);
+	assert(check_list_integrity(list));
+	clean_list(&list);
+	assert(list == NULL);
+	printf("OK\n");
+
 	return (0);
 }

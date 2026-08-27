@@ -6,7 +6,7 @@
 #    By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 15:56:40 by maridos-          #+#    #+#              #
-#    Updated: 2026/08/27 17:02:36 by hequeiro         ###   ########.fr        #
+#    Updated: 2026/08/27 18:06:05 by hequeiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ RM			:=	rm -f
 DIR_PARSE = src/parse/
 DIR_ERROR = src/error/
 DIR_STACK = src/stack/
+DIR_OPS	  = src/operations/
 DIR_TESTS = tests/
 
 # Arquivos
@@ -35,9 +36,10 @@ SRC_STACK = $(DIR_STACK)stack_add.c \
 			$(DIR_STACK)stack_check.c \
 			$(DIR_STACK)stack_free.c \
 			$(DIR_STACK)stack_print.c
+SRC_OPS   = $(DIR_OPS)ops_swap.c
 
 # Junção de todos os arquivos fonte
-SRCS = $(SRC_MAIN) $(SRC_PARSE) $(SRC_ERROR) $(SRC_STACK)
+SRCS = $(SRC_MAIN) $(SRC_PARSE) $(SRC_ERROR) $(SRC_STACK) $(SRC_OPS)
 
 OBJS := $(SRCS:.c=.o)
 
@@ -71,7 +73,8 @@ re: fclean all
 SRCS_TESTS = $(DIR_TESTS)test_stack.c \
 			 $(SRC_PARSE) \
 			 $(SRC_ERROR) \
-			 $(SRC_STACK)
+			 $(SRC_STACK) \
+			 $(SRC_OPS)
 
 OBJS_TESTS = $(SRCS_TESTS:.c=.o)
 

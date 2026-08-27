@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 14:14:39 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/27 17:06:35 by hequeiro         ###   ########.fr       */
+/*   Updated: 2026/08/27 18:11:38 by hequeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ int		check_duplicate_n(t_stack *stack, int num);
 void	clean_list(t_stack **stack);
 void	print_list(t_stack *stack);
 void	print_node(t_stack *node);
+
+/* OPERATIONS */
+void	sa(t_stack	**stack);
+void	sb(t_stack	**stack);
+void	ss(t_stack **stack_a, t_stack **stack_b);
 
 /* TESTS */ // To be removed
 int		check_list_integrity(t_stack *head);
