@@ -40,12 +40,12 @@ static void	sx(t_stack **stack)
 	*stack = second;
 }
 
-void	sa(t_stack	**stack)
+void	sa(t_stack **stack)
 {
 	sx(stack);
 }
 
-void	sb(t_stack	**stack)
+void	sb(t_stack **stack)
 {
 	sx(stack);
 }

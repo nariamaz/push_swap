@@ -36,7 +36,9 @@ SRC_STACK = $(DIR_STACK)stack_add.c \
 			$(DIR_STACK)stack_check.c \
 			$(DIR_STACK)stack_free.c \
 			$(DIR_STACK)stack_print.c
-SRC_OPS   = $(DIR_OPS)ops_swap.c
+SRC_OPS   = $(DIR_OPS)ops_swap.c \
+			$(DIR_OPS)ops_push.c
+
 
 # Junção de todos os arquivos fonte
 SRCS = $(SRC_MAIN) $(SRC_PARSE) $(SRC_ERROR) $(SRC_STACK) $(SRC_OPS)

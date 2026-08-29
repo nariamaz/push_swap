@@ -41,12 +41,12 @@ void	print_node(t_stack *node)
 	if (node->next == NULL)
 	{
 		printf("\tNext's content: (null)\n");
-		printf("\tPrevious's content: (null)\n");
+		printf("\tPrev's content: (null)\n");
 	}
 	else
 	{
 		printf("\tNext's content: %d\n", (node->next)->content);
-		printf("\tPrevious's content: %d\n", (node->prev)->content);
+		printf("\tPrev's content: %d\n", (node->prev)->content);
 	}
 	printf("---------------------\n");
 }
