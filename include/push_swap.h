@@ -70,6 +70,9 @@ void	sb(t_stack **stack);
 void	ss(t_stack **stack_a, t_stack **stack_b);
 void	pa(t_stack **stack_a, t_stack **stack_b);
 void	pb(t_stack **stack_a, t_stack **stack_b);
+void	ra(t_stack **stack);
+void	rb(t_stack **stack);
+void	rr(t_stack **stack_a, t_stack **stack_b);
 
 /* TESTS */ // To be removed
 int		check_list_integrity(t_stack *head);
