@@ -15,14 +15,11 @@
 int	main(int argc, char **argv)
 {
 	t_state	flag;
+
 	flag = (t_state){0};
- 
 	if (!ft_parse_arguments(argc, argv, &flag))
 		return (0);
 	if (!ft_check_duplicity(&flag))
 		return (0);
 	return (0);
 }
-
-
-
