@@ -6,20 +6,13 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 22:58:58 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/25 19:04:29 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/08/31 11:29:26 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-static const char *valid_flags[] = {
-    "bench",
-    "simple",
-    "medium",
-    "complex",
-    "adaptive",
-    NULL
-};
+
 
 int     ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -39,7 +32,10 @@ int ft_validate_flag(char* str, t_state *flag)
 {
     int i;
     int len;
-    
+    static const char *valid_flags[] = {
+        "bench", "simple", "medium", "complex", "adaptive", NULL
+    };
+
     i = 0;
     while (valid_flags[i] != NULL)
     {
