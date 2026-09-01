@@ -6,7 +6,7 @@
 #    By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 15:56:40 by maridos-          #+#    #+#              #
-#    Updated: 2026/08/27 18:06:05 by hequeiro         ###   ########.fr        #
+#    Updated: 2026/08/31 20:39:14 by maridos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,14 +70,18 @@ fclean: clean
 re: fclean all
 
 # Stack related
-SRCS_TESTS = $(DIR_TESTS)test_stack.c \
-			 $(SRC_PARSE) \
-			 $(SRC_ERROR) \
-			 $(SRC_STACK) \
-			 $(SRC_OPS)
+SRC_TEST_STACK = $(DIR_TESTS)test_stack.c
+SRC_TEST_FILL  = $(DIR_TESTS)test_filling_stack.c
 
-OBJS_TESTS = $(SRCS_TESTS:.c=.o)
+SRCS_COMMON_TEST = $(SRC_PARSE) $(SRC_ERROR) $(SRC_STACK) $(SRC_OPS)
 
-test_stack: libft $(OBJS_TESTS)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS_TESTS) -L$(LIBFT_DIR) -lft -o test_stack
+OBJS_TEST_STACK = $(SRC_TEST_STACK:.c=.o) $(SRCS_COMMON_TEST:.c=.o)
+OBJS_TEST_FILL  = $(SRC_TEST_FILL:.c=.o) $(SRCS_COMMON_TEST:.c=.o)
+
+test_stack: libft $(OBJS_TEST_STACK)
+	$(CC) $(CFLAGS) $(OBJS_TEST_STACK) -L$(LIBFT_DIR) -lft -o test_stack
 	valgrind --leak-check=full --show-leak-kinds=all ./test_stack
+
+test_fill_stack: libft $(OBJS_TEST_FILL)
+	$(CC) $(CFLAGS) $(OBJS_TEST_FILL) -L$(LIBFT_DIR) -lft -o test_fill_stack
+	valgrind --leak-check=full --show-leak-kinds=all ./test_fill_stack

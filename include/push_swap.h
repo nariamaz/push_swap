@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 14:14:39 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/27 18:11:38 by hequeiro         ###   ########.fr       */
+/*   Updated: 2026/08/31 12:08:36 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_state
 	int	total_numbers;
 }	t_state;
 
-typedef struct s_stack	t_stack;
+typedef struct s_stack t_stack;
 struct s_stack
 {
 	int		content;
@@ -48,11 +48,12 @@ int		ft_has_number(char *argv);
 /* VALIDATION NUMBER AND FLAGS*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_parsing(char *string, t_state *flag);
-long	ft_atol(char **str);
+int		ft_atoi(char **str);
 int		ft_check_duplicity(t_state *flag);
 int		ft_check_overflow(char *start, int digits, int is_negative);
 int		ft_validate_number(char **string, t_state *flag);
 int		ft_validate_flag(char *str, t_state *flag);
+int 	ft_fill_stack(int argc, char** argv, t_stack **stack_a);
 
 /* ERROR */
 int		ft_print_error(void);
