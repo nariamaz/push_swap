@@ -6,11 +6,11 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 21:52:52 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/24 23:56:05 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/08/31 11:35:48 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap.h"
+#include "push_swap.h"
 
 int	ft_parse_arguments(int argc, char **argv, t_state *flag)
 {

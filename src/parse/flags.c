@@ -6,11 +6,11 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 22:58:58 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/31 11:29:26 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/08/31 11:35:48 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap.h"
+#include "push_swap.h"
 
 
 
