@@ -12,10 +12,10 @@
 
 #include "../libft.h"
 
-static size_t define_str_size(char const *s1, char const *s2)
+static size_t	define_str_size(char const *s1, char const *s2)
 {
-	size_t len1;
-	size_t len2;
+	size_t	len1;
+	size_t	len2;
 
 	if (!s1 && !s2)
 		return (0);

@@ -15,220 +15,742 @@
 #include <stdbool.h>
 #include "push_swap.h"
 
+#define BLACK		"\033[1;30m"
+#define RED			"\033[1;31m"
+#define GREEN		"\033[1;32m"
+#define YELLOW		"\033[1;33m"
+#define BLUE		"\033[1;34m"
+#define MAGENTA		"\033[1;35m"
+#define CYAN		"\033[1;36m"
+#define WHITE		"\033[1;37m"
+#define RESET		"\033[0m"
+
 int	main(void)
 {
-	t_stack	*list;
+	t_stack	*list_a;
+	t_stack	*list_b;
 	int		i;
 	t_stack	*iter_node;
 
-	list = NULL;
-	printf("===== Stack Creation Tests =====\n\n");
+	list_a = NULL;
+	printf(YELLOW "===== Stack Creation Tests =====\n\n" RESET);
 
-	printf("1. Testing empty list: ");
-	assert(list == NULL);
-	assert(check_list_integrity(list));
-	clean_list(&list);
-	assert(list == NULL);
-	printf("OK\n");
+	printf(CYAN "1." MAGENTA " Testing empty list: ");
+	assert(list_a == NULL);
+	assert(check_list_integrity(list_a));
+	clean_list(&list_a);
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
 
-	printf("2. Testing 1 Node: ");
-	add_to_list(&list, 1);
-	assert(list->content == 1);
-	assert(check_list_integrity(list));
-	clean_list(&list);
-	assert(list == NULL);
-	printf("OK\n");
+	printf(CYAN "2." MAGENTA " Testing 1 Node: ");
+	add_to_list(&list_a, 1);
+	assert(list_a->content == 1);
+	assert(check_list_integrity(list_a));
+	clean_list(&list_a);
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
 
-	printf("3. Testing 2 Nodes: ");
-	add_to_list(&list, 1);
-	add_to_list(&list, 2);
-	assert(list->content == 1);
-	assert(list->next->content == 2);
-	assert(list->prev->content == 2);
-	assert(check_list_integrity(list));
-	clean_list(&list);
-	assert(list == NULL);
-	printf("OK\n");
+	printf(CYAN "3." MAGENTA " Testing 2 Nodes: ");
+	add_to_list(&list_a, 1);
+	add_to_list(&list_a, 2);
+	assert(list_a->content == 1);
+	assert(list_a->next->content == 2);
+	assert(list_a->prev->content == 2);
+	assert(check_list_integrity(list_a));
+	clean_list(&list_a);
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
 
-	printf("4. Testing 3 Nodes: ");
-	add_to_list(&list, 1);
-	add_to_list(&list, 2);
-	add_to_list(&list, 3);
-	assert(list->content == 1);
-	assert(list->next->content == 2);
-	assert(list->prev->content == 3);
-	assert(check_list_integrity(list));
-	clean_list(&list);
-	assert(list == NULL);
-	printf("OK\n");
+	printf(CYAN "4." MAGENTA " Testing 3 Nodes: ");
+	add_to_list(&list_a, 1);
+	add_to_list(&list_a, 2);
+	add_to_list(&list_a, 3);
+	assert(list_a->content == 1);
+	assert(list_a->next->content == 2);
+	assert(list_a->prev->content == 3);
+	assert(check_list_integrity(list_a));
+	clean_list(&list_a);
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
 
-	printf("5. Testing 10 Nodes: ");
+	printf(CYAN "5." MAGENTA " Testing 10 Nodes: ");
 	i = 1;
 	while (i <= 10)
-		add_to_list(&list, i++);
-	assert(list->content == 1);
-	assert(list->next->content == 2);
-	assert(list->prev->content == 10);
+		add_to_list(&list_a, i++);
+	assert(list_a->content == 1);
+	assert(list_a->next->content == 2);
+	assert(list_a->prev->content == 10);
 	i = 1;
-	iter_node = list;
+	iter_node = list_a;
 	while (i++ < 10)
 		iter_node = iter_node->next;
-	assert(iter_node == list->prev);
-	assert(check_list_integrity(list));
-	clean_list(&list);
-	assert(list == NULL);
-	printf("OK\n");
+	assert(iter_node == list_a->prev);
+	assert(check_list_integrity(list_a));
+	clean_list(&list_a);
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
 
-	printf("6. Testing 100 Nodes: ");
+	printf(CYAN "6." MAGENTA " Testing 100 Nodes: ");
 	i = 0;
 	while (i < 100)
-		add_to_list(&list, i++);
-	assert(list->content == 0);
-	assert(list->next->content == 1);
-	assert(list->prev->content == 99);
+		add_to_list(&list_a, i++);
+	assert(list_a->content == 0);
+	assert(list_a->next->content == 1);
+	assert(list_a->prev->content == 99);
 	i = 1;
-	iter_node = list;
+	iter_node = list_a;
 	while (i++ < 100)
 		iter_node = iter_node->next;
-	assert(iter_node == list->prev);
-	assert(check_list_integrity(list));
-	clean_list(&list);
-	assert(list == NULL);
-	printf("OK\n");
+	assert(iter_node == list_a->prev);
+	assert(check_list_integrity(list_a));
+	clean_list(&list_a);
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
 
-	printf("7. Testing 1000 Nodes: ");
+	printf(CYAN "7." MAGENTA " Testing 1000 Nodes: ");
 	i = 1000;
 	while (i > 0)
-		add_to_list(&list, i--);
-	assert(list->content == 1000);
-	assert(list->next->content == 999);
-	assert(list->prev->content == 1);
+		add_to_list(&list_a, i--);
+	assert(list_a->content == 1000);
+	assert(list_a->next->content == 999);
+	assert(list_a->prev->content == 1);
 	i = 1;
-	iter_node = list;
+	iter_node = list_a;
 	while (i++ < 1000)
 		iter_node = iter_node->next;
-	assert(iter_node == list->prev);
-	assert(check_list_integrity(list));
-	clean_list(&list);
-	assert(list == NULL);
-	printf("OK\n");
+	assert(iter_node == list_a->prev);
+	assert(check_list_integrity(list_a));
+	clean_list(&list_a);
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
 
-	printf("8. Testing 10000 Nodes: ");
+	printf(CYAN "8." MAGENTA " Testing 10000 Nodes: ");
 	i = 0;
 	while (i < 10000)
-		add_to_list(&list, i++);
-	assert(list->content == 0);
-	assert(list->next->content == 1);
-	assert(list->prev->prev->content == 9998);
+		add_to_list(&list_a, i++);
+	assert(list_a->content == 0);
+	assert(list_a->next->content == 1);
+	assert(list_a->prev->prev->content == 9998);
 	i = 1;
-	iter_node = list;
+	iter_node = list_a;
 	while (i++ < 10000)
 		iter_node = iter_node->next;
-	assert(iter_node == list->prev);
+	assert(iter_node == list_a->prev);
 	i = 1;
-	iter_node = list;
+	iter_node = list_a;
 	while (i++ <= 5000)
 		iter_node = iter_node->prev;
 	assert(iter_node->content == 5000);
-	assert(check_list_integrity(list));
-	clean_list(&list);
-	assert(list == NULL);
-	printf("OK\n");
+	assert(check_list_integrity(list_a));
+	clean_list(&list_a);
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
 
-	printf("\n\n===== Duplicity Tests =====\n\n");
+	printf(YELLOW "\n===== Duplicity Tests =====\n\n" RESET);
 
-	printf("9.\tlist: NULL\n");
+	printf(CYAN "9." MAGENTA "\tlist: NULL\n");
 	printf("\tsearch: 10\n");
 	printf("\tresult: false\n\n");
-	assert(check_duplicate_n(list, 10) == false);
+	assert(check_duplicate_n(list_a, 10) == false);
 
-	add_to_list(&list, 10);
-	printf("10.\tlist: [10]\n");
+	printf(CYAN "10." MAGENTA "\tlist: [10]\n");
+	add_to_list(&list_a, 10);
 	printf("\tsearch: 10\n");
 	printf("\tresult: true\n\n");
-	assert(check_duplicate_n(list, 10) == true);
+	assert(check_duplicate_n(list_a, 10) == true);
 
-	printf("11.\tlist: [10]\n");
+	printf(CYAN "11." MAGENTA "\tlist: [10]\n");
 	printf("\tsearch: 20\n");
 	printf("\tresult: false\n\n");
-	assert(check_duplicate_n(list, 20) == false);
+	assert(check_duplicate_n(list_a, 20) == false);
 
-	add_to_list(&list, 20);
-	add_to_list(&list, 30);
-	printf("12.\tlist: [10, 20, 30]\n");
+	printf(CYAN "12." MAGENTA "\tlist: [10, 20, 30]\n");
+	add_to_list(&list_a, 20);
+	add_to_list(&list_a, 30);
 	printf("\tsearch: 10\n");
 	printf("\tresult: true\n\n");
-	assert(check_duplicate_n(list, 10) == true);
+	assert(check_duplicate_n(list_a, 10) == true);
 
-	printf("13.\tlist: [10, 20, 30]\n");
+	printf(CYAN "13." MAGENTA "\tlist: [10, 20, 30]\n");
 	printf("\tsearch: 20\n");
 	printf("\tresult: true\n\n");
-	assert(check_duplicate_n(list, 20) == true);
+	assert(check_duplicate_n(list_a, 20) == true);
 
-	printf("14.\tlist: [10, 20, 30]\n");
+	printf(CYAN "14." MAGENTA "\tlist: [10, 20, 30]\n");
 	printf("\tsearch: 30\n");
 	printf("\tresult: true\n\n");
-	assert(check_duplicate_n(list, 30) == true);
+	assert(check_duplicate_n(list_a, 30) == true);
 
-	printf("15.\tlist: [10, 20, 30]\n");
+	printf(CYAN "15." MAGENTA "\tlist: [10, 20, 30]\n");
 	printf("\tsearch: 40\n");
 	printf("\tresult: false\n\n");
-	assert(check_duplicate_n(list, 40) == false);
-	clean_list(&list);
-	assert(list == NULL);
+	assert(check_duplicate_n(list_a, 40) == false);
+	clean_list(&list_a);
+	assert(list_a == NULL);
 
-	add_to_list(&list, -10);
-	add_to_list(&list, 0);
-	add_to_list(&list, 10);
-	printf("16.\tlist: [-10, 0, 10]\n");
+	printf(CYAN "16." MAGENTA "\tlist: [-10, 0, 10]\n");
+	add_to_list(&list_a, -10);
+	add_to_list(&list_a, 0);
+	add_to_list(&list_a, 10);
 	printf("\tsearch: -10\n");
 	printf("\tresult: true\n\n");
-	assert(check_duplicate_n(list, -10) == true);
+	assert(check_duplicate_n(list_a, -10) == true);
 
-	clean_list(&list);
-	assert(list == NULL);
+	clean_list(&list_a);
+	assert(list_a == NULL);
 
-	printf("===== Operations Tests =====\n\n");
+	printf(YELLOW "===== Operations Tests =====\n\n" RESET);
 
-	printf("17. SA with empty list: ");
-	sa(&list);
-	assert(list == NULL);
-	assert(check_list_integrity(list));
-	printf("OK\n");
+	printf(CYAN "17. " MAGENTA "SA with empty list: ");
+	sa(&list_a);
+	assert(list_a == NULL);
+	assert(check_list_integrity(list_a));
+	printf(GREEN "OK\n");
 
-	add_to_list(&list, 10);
-	printf("18. SA with 1 Node: ");
-	sa(&list);
-	assert(list->content == 10);
-	assert(check_list_integrity(list));
-	printf("OK\n");
+	printf(CYAN "18. " MAGENTA "SA with 1 Node: ");
+	add_to_list(&list_a, 10);
+	sa(&list_a);
+	assert(list_a->content == 10);
+	assert(check_list_integrity(list_a));
+	printf(GREEN "OK\n");
 
-	add_to_list(&list, 20);
-	printf("19. SA with 2 Nodes: ");
-	sa(&list);
-	assert(list->content == 20);
-	assert(list->next->content == 10);
-	assert(check_list_integrity(list));
-	clean_list(&list);
-	assert(list == NULL);
-	printf("OK\n");
+	printf(CYAN "19. " MAGENTA "SA with 2 Nodes: ");
+	add_to_list(&list_a, 20);
+	sa(&list_a);
+	assert(list_a->content == 20);
+	assert(list_a->next->content == 10);
+	assert(check_list_integrity(list_a));
+	clean_list(&list_a);
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
 
-	add_to_list(&list, 10);
-	add_to_list(&list, 20);
-	add_to_list(&list, 30);
-	printf("20. SA and SB with 2+ Nodes: ");
-	sa(&list);
-	assert(list->content == 20);
-	assert(list->next->content == 10);
-	assert(list->next->next->content == 30);
-	sb(&list);
-	assert(list->content == 10);
-	assert(list->next->content == 20);
-	assert(list->next->next->content == 30);
-	assert(check_list_integrity(list));
-	clean_list(&list);
-	assert(list == NULL);
-	printf("OK\n");
+	printf(CYAN "20. " MAGENTA "SA and SB with 2+ Nodes: ");
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	add_to_list(&list_a, 30);
+	sa(&list_a);
+	assert(list_a->content == 20);
+	assert(list_a->next->content == 10);
+	assert(list_a->next->next->content == 30);
+	sb(&list_a);
+	assert(list_a->content == 10);
+	assert(list_a->next->content == 20);
+	assert(list_a->next->next->content == 30);
+	assert(check_list_integrity(list_a));
+	clean_list(&list_a);
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
 
-	return (0);
+	printf(CYAN "21." MAGENTA " PA and PB with both Stacks empty: ");
+	list_b = NULL;
+	pa(&list_a, &list_b);
+	assert(list_a == NULL);
+	assert(list_b == NULL);
+	pb(&list_a, &list_b);
+	assert(list_a == NULL);
+	assert(list_b == NULL);
+	printf(GREEN "OK\n");
+
+	printf(CYAN "22." MAGENTA " PA with Stack A with 1 Node and Stack B empty: ");
+	add_to_list(&list_a, 10);
+	pa(&list_a, &list_b);
+	assert(list_a->content == 10);
+	assert(check_list_integrity(list_a));
+	assert(list_b == NULL);
+	printf(GREEN "OK\n");
+
+	printf(CYAN "23." MAGENTA " PA with Stack A empty and Stack B with 1 Node: ");
+	clean_list(&list_a);
+	add_to_list(&list_b, 10);
+	pa(&list_a, &list_b);
+	assert(list_a->content == 10);
+	assert(check_list_integrity(list_a));
+	assert(list_b == NULL);
+	printf(GREEN "OK\n");
+
+	printf(CYAN "24." MAGENTA " PB with Stack A with 1 Node and Stack B empty: ");
+	clean_list(&list_a);
+	add_to_list(&list_a, 10);
+	pb(&list_a, &list_b);
+	assert(list_b->content == 10);
+	assert(check_list_integrity(list_b));
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
+
+	printf(CYAN "25." MAGENTA " PB with Stack A empty and Stack B with 1 Node: ");
+	clean_list(&list_b);
+	add_to_list(&list_b, 10);
+	pb(&list_a, &list_b);
+	assert(list_b->content == 10);
+	assert(check_list_integrity(list_b));
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
+
+	printf(CYAN "26." MAGENTA " PA with both Stacks with 1 Node: ");
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_b, 42);
+	pa(&list_a, &list_b);
+	assert(list_a->content == 42);
+	assert(list_a->next->content == 10);
+	assert(check_list_integrity(list_a));
+	assert(list_b == NULL);
+	printf(GREEN "OK\n");
+
+	printf(CYAN "27." MAGENTA " PB with both Stacks with 1 Node: ");
+	clean_list(&list_a);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_b, 42);
+	pb(&list_a, &list_b);
+	assert(list_b->content == 10);
+	assert(list_b->next->content == 42);
+	assert(check_list_integrity(list_b));
+	assert(list_a == NULL);
+	printf(GREEN "OK\n");
+
+	printf(CYAN "28." MAGENTA " PA with Stack B with 2 Nodes and Stack A empty: ");
+	clean_list(&list_b);
+	add_to_list(&list_b, 10);
+	add_to_list(&list_b, 42);
+	pa(&list_a, &list_b);
+	assert(list_a->content == 10);
+	assert(list_b->content == 42);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "29." MAGENTA " PB with Stack A with 2 Nodes and Stack B empty: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 42);
+	pb(&list_a, &list_b);
+	assert(list_a->content == 42);
+	assert(list_b->content == 10);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "30." MAGENTA " PA with Stack B with 2 Nodes and Stack A with 1 Node: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 333);
+	add_to_list(&list_b, 10);
+	add_to_list(&list_b, 20);
+	pa(&list_a, &list_b);
+	assert(list_a->content == 10);
+	assert(list_a->next->content == 333);
+	assert(list_b->content == 20);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "31." MAGENTA " PB with Stack A with 2 Nodes and Stack B with 1 Node: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_b, 333);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	pb(&list_a, &list_b);
+	assert(list_b->content == 10);
+	assert(list_b->next->content == 333);
+	assert(list_a->content == 20);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "32." MAGENTA " PA with both Stacks with 2 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	add_to_list(&list_b, 333);
+	add_to_list(&list_b, 444);
+	pa(&list_a, &list_b);
+	assert(list_a->content == 333);
+	assert(list_a->next->content == 10);
+	assert(list_a->next->next->content == 20);
+	assert(list_b->content == 444);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "33." MAGENTA " PB with both Stacks with 2 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	add_to_list(&list_b, 333);
+	add_to_list(&list_b, 444);
+	pb(&list_a, &list_b);
+	assert(list_a->content == 20);
+	assert(list_b->content == 10);
+	assert(list_b->next->content == 333);
+	assert(list_b->next->next->content == 444);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "34." MAGENTA " PA with Stack A with 2 Nodes and Stack B with 3 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	add_to_list(&list_b, 333);
+	add_to_list(&list_b, 444);
+	add_to_list(&list_b, 555);
+	pa(&list_a, &list_b);
+	assert(list_a->content == 333);
+	assert(list_a->next->content == 10);
+	assert(list_a->next->next->content == 20);
+	assert(list_b->content == 444);
+	assert(list_b->next->content == 555);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "35." MAGENTA " PA with Stack A with 3 Nodes and Stack B with 2 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	add_to_list(&list_a, 30);
+	add_to_list(&list_b, 444);
+	add_to_list(&list_b, 555);
+	pa(&list_a, &list_b);
+	assert(list_a->content == 444);
+	assert(list_a->next->content == 10);
+	assert(list_a->next->next->content == 20);
+	assert(list_a->next->next->next->content == 30);
+	assert(list_b->content == 555);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "36." MAGENTA " PB with Stack A with 2 Nodes and Stack B with 3 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	add_to_list(&list_b, 333);
+	add_to_list(&list_b, 444);
+	add_to_list(&list_b, 555);
+	pb(&list_a, &list_b);
+	assert(list_a->content == 20);
+	assert(list_b->content == 10);
+	assert(list_b->next->content == 333);
+	assert(list_b->next->next->content == 444);
+	assert(list_b->next->next->next->content == 555);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "37." MAGENTA " PB with Stack A with 3 Nodes and Stack B with 2 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	add_to_list(&list_a, 30);
+	add_to_list(&list_b, 444);
+	add_to_list(&list_b, 555);
+	pb(&list_a, &list_b);
+	assert(list_a->content == 20);
+	assert(list_a->next->content == 30);
+	assert(list_b->content == 10);
+	assert(list_b->next->content == 444);
+	assert(list_b->next->next->content == 555);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "38." MAGENTA " PA with both Stacks with 3 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	add_to_list(&list_a, 30);
+	add_to_list(&list_b, 444);
+	add_to_list(&list_b, 555);
+	add_to_list(&list_b, 666);
+	pa(&list_a, &list_b);
+	assert(list_a->content == 444);
+	assert(list_a->next->content == 10);
+	assert(list_a->next->next->content == 20);
+	assert(list_a->next->next->next->content == 30);
+	assert(list_b->content == 555);
+	assert(list_b->next->content == 666);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "39." MAGENTA " PB with both Stacks with 3 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	add_to_list(&list_a, 30);
+	add_to_list(&list_b, 444);
+	add_to_list(&list_b, 555);
+	add_to_list(&list_b, 666);
+	pb(&list_a, &list_b);
+	assert(list_b->content == 10);
+	assert(list_b->next->content == 444);
+	assert(list_b->next->next->content == 555);
+	assert(list_b->next->next->next->content == 666);
+	assert(list_a->content == 20);
+	assert(list_a->next->content == 30);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "40." MAGENTA " PA 40 times: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	i = 0;
+	while (++i <= 100)
+		add_to_list(&list_b, i);
+	i = 0;
+	while (i++ < 40)
+		pa(&list_a, &list_b);
+	assert(list_a->content == 40);
+	assert(list_a->next->content == 39);
+	assert(list_a->prev->content == 1);
+	assert(list_b->content == 41);
+	assert(list_b->next->content == 42);
+	assert(list_b->prev->content == 100);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "41." MAGENTA " PB 200 times: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	i = 0;
+	while (++i <= 100)
+		add_to_list(&list_a, i);
+	i = 0;
+	while (i++ < 200)
+		pb(&list_a, &list_b);
+	assert(list_a == NULL);
+	assert(list_b->content == 100);
+	assert(list_b->next->content == 99);
+	assert(list_b->prev->content == 1);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "42." MAGENTA " RA and RB with empty Stacks: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	ra(&list_a);
+	rb(&list_b);
+	assert(list_a == NULL);
+	assert(list_b == NULL);
+	printf(GREEN "OK\n");
+
+	printf(CYAN "43." MAGENTA " RA and RB with 1 Node at each Stack: ");
+	add_to_list(&list_a, 10);
+	add_to_list(&list_b, 42);
+	ra(&list_a);
+	rb(&list_b);
+	assert(list_a->content == 10);
+	assert(list_b->content == 42);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "44." MAGENTA " RA and RB with 2 Nodes at each Stack: ");
+	add_to_list(&list_a, 20);
+	add_to_list(&list_b, 100);
+	ra(&list_a);
+	rb(&list_b);
+	assert(list_a->content == 20);
+	assert(list_a->next->content == 10);
+	assert(list_b->content == 100);
+	assert(list_b->next->content == 42);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "45." MAGENTA " RA and RB with 3 Nodes at each Stack: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	add_to_list(&list_a, 30);
+	add_to_list(&list_b, 444);
+	add_to_list(&list_b, 555);
+	add_to_list(&list_b, 666);
+	ra(&list_a);
+	rb(&list_b);
+	assert(list_a->content == 20);
+	assert(list_a->prev->content == 10);
+	assert(list_a->next->content == 30);
+	assert(list_b->content == 555);
+	assert(list_b->prev->content == 444);
+	assert(list_b->next->content == 666);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "46." MAGENTA " RR empty stacks: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	rr(&list_a, &list_b);
+	assert(list_a == NULL);
+	assert(list_b == NULL);
+	printf(GREEN "OK\n");
+	
+	printf(CYAN "47." MAGENTA " RR with Stack A with 1 Node and Stack B empty: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	rr(&list_a, &list_b);
+	assert(list_a->content == 10);
+	assert(list_b == NULL);
+	assert(check_list_integrity(list_a));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "48." MAGENTA " RR Stack A empty and Stack B with 2 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_b, 42);
+	add_to_list(&list_b, 999);
+	rr(&list_a, &list_b);
+	assert(list_a == NULL);
+	assert(list_b->content == 999);
+	assert(list_b->next->content == 42);
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "49." MAGENTA " RR with both Stacks with 500 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	i = 0;
+	while (i++ < 500)
+	{
+		add_to_list(&list_a, i);
+		add_to_list(&list_b, (i * -1));
+	}
+	rr(&list_a, &list_b);
+	assert(list_a->content == 2);
+	assert(list_a->prev->content == 1);
+	assert(list_a->prev->prev->content == 500);
+	assert(list_b->content == -2);
+	assert(list_b->prev->content == -1);
+	assert(list_b->prev->prev->content == -500);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+
+	printf(CYAN "50." MAGENTA " RRA and RRB with empty Stacks: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	rra(&list_a);
+	rrb(&list_b);
+	assert(list_a == NULL);
+	assert(list_b == NULL);
+	printf(GREEN "OK\n");
+
+	printf(CYAN "51." MAGENTA " RRA and RRB with 1 Node at each Stack: ");
+	add_to_list(&list_a, 10);
+	add_to_list(&list_b, 42);
+	ra(&list_a);
+	rb(&list_b);
+	assert(list_a->content == 10);
+	assert(list_b->content == 42);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "52." MAGENTA " RRA and RRB with 2 Nodes at each Stack: ");
+	add_to_list(&list_a, 20);
+	add_to_list(&list_b, 100);
+	rra(&list_a);
+	rrb(&list_b);
+	assert(list_a->content == 20);
+	assert(list_a->next->content == 10);
+	assert(list_b->content == 100);
+	assert(list_b->next->content == 42);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "53." MAGENTA " RRA and RRB with 3 Nodes at each Stack: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	add_to_list(&list_a, 20);
+	add_to_list(&list_a, 30);
+	add_to_list(&list_b, 444);
+	add_to_list(&list_b, 555);
+	add_to_list(&list_b, 666);
+	rra(&list_a);
+	rrb(&list_b);
+	assert(list_a->content == 30);
+	assert(list_a->prev->content == 20);
+	assert(list_a->next->content == 10);
+	assert(list_b->content == 666);
+	assert(list_b->prev->content == 555);
+	assert(list_b->next->content == 444);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "54." MAGENTA " RRR empty stacks: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	rrr(&list_a, &list_b);
+	assert(list_a == NULL);
+	assert(list_b == NULL);
+	printf(GREEN "OK\n");
+
+	printf(CYAN "55." MAGENTA " RRR with Stack A with 1 Node and Stack B empty: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_a, 10);
+	rrr(&list_a, &list_b);
+	assert(list_a->content == 10);
+	assert(list_b == NULL);
+	assert(check_list_integrity(list_a));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "56." MAGENTA " RRR Stack A empty and Stack B with 2 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	add_to_list(&list_b, 42);
+	add_to_list(&list_b, 999);
+	rrr(&list_a, &list_b);
+	assert(list_a == NULL);
+	assert(list_b->content == 999);
+	assert(list_b->next->content == 42);
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(CYAN "57." MAGENTA " RRR with both Stacks with 200 Nodes: ");
+	clean_list(&list_a);
+	clean_list(&list_b);
+	i = 0;
+	while (i++ < 200)
+	{
+		add_to_list(&list_a, i);
+		add_to_list(&list_b, (i * 2));
+	}
+	rrr(&list_a, &list_b);
+	assert(list_a->content == 200);
+	assert(list_a->prev->content == 199);
+	assert(list_a->next->content == 1);
+	assert(list_b->content == 400);
+	assert(list_b->prev->content == 398);
+	assert(list_b->next->content == 2);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
+	printf(GREEN "OK\n");
+
+	printf(RESET);
+	clean_list(&list_a);
+	clean_list(&list_b);
+	assert(check_list_integrity(list_a));
+	assert(check_list_integrity(list_b));
 }
