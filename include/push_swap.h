@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 14:14:39 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/31 12:08:36 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/01 16:11:44 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <limits.h>
 
+/* NUMBER FLAGS */
 typedef enum e_flags
 {
 	BENCH,
@@ -39,6 +40,20 @@ struct s_stack
 	t_stack	*next;
 	t_stack	*prev;
 };
+
+/* NUMBER OPERATIONS */
+typedef enum e_operations
+{
+    SA, SB, SS, PA, PB, 
+	RA, RB, RR, RRA, RRB, RRR,
+    OP_COUNT
+}   t_operations;
+
+typedef struct s_metrics
+{
+    int op_counter[OP_COUNT];
+    double disorder;
+}   t_metrics;
 
 /* ARGUMENT DISPATCH */
 int		ft_is_blank(char *str);
@@ -77,6 +92,9 @@ void	rr(t_stack **stack_a, t_stack **stack_b);
 void	rra(t_stack **stack);
 void	rrb(t_stack **stack);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
+
+/* METRICS */
+int ft_total_ops(t_metrics** operations);
 
 /* TESTS */ // To be removed
 int		check_list_integrity(t_stack *head);

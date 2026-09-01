@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   compute_disorder.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/15 14:39:00 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/01 21:15:24 by maridos-         ###   ########.fr       */
+/*   Created: 2026/08/31 23:03:48 by maridos-          #+#    #+#             */
+/*   Updated: 2026/09/01 17:14:33 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+double ft_compute_disorder(t_stack *stack, int total_numbers)
 {
-	t_state	flag;
-	t_stack *stack_a; 
-		
-	flag = (t_state){0};
-	stack_a = NULL;
-	if (!ft_parse_arguments(argc, argv, &flag))
-		return (0);
-	if (!ft_check_duplicity(&flag))
-		return (0);
-	if (!ft_fill_stack(argc, argv, &stack_a))
-		return (0);
-	return (0);
+    int mistakes;
+    int total_pairs;
+    
+    mistakes = 0;
+    total_pairs = 0;
+    while (total_pairs < (total_numbers - 1))
+    {
+        total_pairs++;
+        if ((stack -> content) > (stack -> next -> content))
+            mistakes++;
+        stack = stack -> next;
+    }
+    return ((double) mistakes / total_pairs);
 }
+
