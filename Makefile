@@ -6,7 +6,7 @@
 #    By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 15:56:40 by maridos-          #+#    #+#              #
-#    Updated: 2026/08/31 20:39:14 by maridos-         ###   ########.fr        #
+#    Updated: 2026/09/01 23:27:04 by maridos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,29 +20,34 @@ MAKEFLAGS	:=	--silent
 RM			:=	rm -f
 
 # Diretórios
-DIR_PARSE = src/parse/
-DIR_ERROR = src/error/
-DIR_STACK = src/stack/
-DIR_OPS	  = src/operations/
-DIR_TESTS = tests/
+DIR_PARSE 	= src/parse/
+DIR_ERROR 	= src/error/
+DIR_STACK 	= src/stack/
+DIR_OPS	  	= src/operations/
+DIR_METRICS = src/metrics/
+DIR_TESTS 	= tests/
 
 # Arquivos
 SRC_MAIN = src/main.c
-SRC_PARSE = $(DIR_PARSE)dispatcher.c \
-			$(DIR_PARSE)flags.c \
-			$(DIR_PARSE)numbers.c
-SRC_ERROR = $(DIR_ERROR)error.c
-SRC_STACK = $(DIR_STACK)stack_add.c \
-			$(DIR_STACK)stack_check.c \
-			$(DIR_STACK)stack_free.c \
-			$(DIR_STACK)stack_print.c
-SRC_OPS   = $(DIR_OPS)ops_swap.c \
-			$(DIR_OPS)ops_push.c \
-			$(DIR_OPS)ops_rotate.c \
-			$(DIR_OPS)ops_reverse_rotate.c
+SRC_PARSE 	= 	$(DIR_PARSE)dispatcher.c \
+				$(DIR_PARSE)flags.c \
+				$(DIR_PARSE)numbers.c
+SRC_ERROR 	= 	$(DIR_ERROR)error.c
+SRC_STACK 	= 	$(DIR_STACK)stack_add.c \
+				$(DIR_STACK)stack_check.c \
+				$(DIR_STACK)stack_free.c \
+				$(DIR_STACK)stack_print.c
+SRC_OPS   	= 	$(DIR_OPS)ops_swap.c \
+				$(DIR_OPS)ops_push.c \
+				$(DIR_OPS)ops_rotate.c \
+				$(DIR_OPS)ops_reverse_rotate.c
+SRC_METRICS =	$(DIR_METRICS)benchmark.c \
+				$(DIR_METRICS)strategy.c \
+				$(DIR_METRICS)operations.c
 
 # Junção de todos os arquivos fonte
-SRCS = $(SRC_MAIN) $(SRC_PARSE) $(SRC_ERROR) $(SRC_STACK) $(SRC_OPS)
+SRCS = $(SRC_MAIN) $(SRC_PARSE) $(SRC_ERROR) $(SRC_STACK) $(SRC_OPS) \
+		$(SRC_METRICS)
 
 OBJS := $(SRCS:.c=.o)
 

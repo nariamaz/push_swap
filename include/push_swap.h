@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 14:14:39 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/01 16:11:44 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/01 23:53:21 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-# include <limits.h>
+//# include <limits.h>
+# include <stdbool.h>
 
 /* NUMBER FLAGS */
 typedef enum e_flags
@@ -30,7 +31,7 @@ typedef enum e_flags
 typedef struct s_state
 {
 	int	counter [FLAG_COUNT];
-	int	total_numbers;
+	int	total_nbs;
 }	t_state;
 
 typedef struct s_stack t_stack;
@@ -53,6 +54,7 @@ typedef struct s_metrics
 {
     int op_counter[OP_COUNT];
     double disorder;
+	int strategy; 
 }   t_metrics;
 
 /* ARGUMENT DISPATCH */
@@ -69,6 +71,8 @@ int		ft_check_overflow(char *start, int digits, int is_negative);
 int		ft_validate_number(char **string, t_state *flag);
 int		ft_validate_flag(char *str, t_state *flag);
 int 	ft_fill_stack(int argc, char** argv, t_stack **stack_a);
+void 	ft_get_strategy(t_state flags, t_metrics *metrics); 
+
 
 /* ERROR */
 int		ft_print_error(void);
@@ -94,7 +98,9 @@ void	rrb(t_stack **stack);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 
 /* METRICS */
-int ft_total_ops(t_metrics** operations);
+int ft_total_ops(t_metrics operations);
+void ft_compute_disorder(t_stack *stack, int total_nbs, t_metrics *metrics); 
+void ft_show_benchmark(t_metrics metrics); 
 
 /* TESTS */ // To be removed
 int		check_list_integrity(t_stack *head);

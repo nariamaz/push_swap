@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 19:16:28 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/31 21:38:12 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/01 22:06:47 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_validate_number(char **string, t_state *flag)
 		return (ft_print_error());
 	if (!ft_check_overflow(start, digits, is_negative))
 		return (0);
-	flag->total_numbers++;
+	flag->total_nbs++;
 	*string = start + digits;
 	return (1);
 }

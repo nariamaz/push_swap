@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 17:13:40 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/01 20:50:31 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/01 21:57:47 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int ft_total_ops(t_metrics metrics)
     sum = 0;
     while (i < OP_COUNT)
     {
-        sum = sum + metrics->op_counter[i];
+        sum = sum + metrics.op_counter[i];
         i++;
     }
     return (sum);
