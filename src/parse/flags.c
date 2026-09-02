@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 22:58:58 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/31 11:35:48 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/02 00:00:43 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,26 @@ int	ft_check_duplicity(t_state *flag)
 			return (ft_print_error());
 		i++;
 	}
-	sum = (flag->counter[1] + flag->counter[2]
-			+ flag->counter[3] + flag->counter[4]);
+	sum = (flag->counter[BENCH] + flag->counter[SIMPLE]
+			+ flag->counter[MEDIUM] + flag->counter[COMPLEX]);
 	if (sum > 1)
 		return (ft_print_error());
 	return (1);
+}
+void ft_get_strategy(t_state flags, t_metrics *metrics)
+{
+    int i; 
+
+    int i = 1; 
+    while (i < FLAG_COUNT)
+    {
+        if (flags.counter[i])
+		{
+            metrics->strategy = i; 
+			return; 
+        }
+		i++;    
+    }
+	metrics->strategy = ADAPTIVE; 
+	return; 
 }
