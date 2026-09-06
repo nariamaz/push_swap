@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 14:14:39 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/01 23:53:21 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/04 13:23:51 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-//# include <limits.h>
 # include <stdbool.h>
 
 /* NUMBER FLAGS */
@@ -28,16 +27,11 @@ typedef enum e_flags
 	FLAG_COUNT
 }	t_flags;
 
-typedef struct s_state
-{
-	int	counter [FLAG_COUNT];
-	int	total_nbs;
-}	t_state;
-
 typedef struct s_stack t_stack;
 struct s_stack
 {
 	int		content;
+	int		index;
 	t_stack	*next;
 	t_stack	*prev;
 };
@@ -45,33 +39,35 @@ struct s_stack
 /* NUMBER OPERATIONS */
 typedef enum e_operations
 {
-    SA, SB, SS, PA, PB, 
+    SA, SB, SS, PA, PB,
 	RA, RB, RR, RRA, RRB, RRR,
     OP_COUNT
 }   t_operations;
 
-typedef struct s_metrics
+typedef struct s_data
 {
-    int op_counter[OP_COUNT];
     double disorder;
-	int strategy; 
-}   t_metrics;
+	int	f_counter[FLAG_COUNT];
+    int op_counter[OP_COUNT];
+	int	total_nbs;
+	int strategy;
+}   t_data;
 
 /* ARGUMENT DISPATCH */
 int		ft_is_blank(char *str);
-int		ft_parse_arguments(int argc, char **argv, t_state *flag);
+int		ft_validate_args(int argc, char **argv, t_data *data);
 int		ft_has_number(char *argv);
 
 /* VALIDATION NUMBER AND FLAGS*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_parsing(char *string, t_state *flag);
+int		ft_parsing(char *string, t_data *data);
 int		ft_atoi(char **str);
-int		ft_check_duplicity(t_state *flag);
+int		ft_check_duplicate_f(t_data *data);
 int		ft_check_overflow(char *start, int digits, int is_negative);
-int		ft_validate_number(char **string, t_state *flag);
-int		ft_validate_flag(char *str, t_state *flag);
+int		ft_validate_number(char **string, t_data *data);
+int		ft_validate_flag(char *str, t_data *data);
 int 	ft_fill_stack(int argc, char** argv, t_stack **stack_a);
-void 	ft_get_strategy(t_state flags, t_metrics *metrics); 
+void 	ft_get_strategy(t_data *data);
 
 
 /* ERROR */
@@ -98,9 +94,10 @@ void	rrb(t_stack **stack);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 
 /* METRICS */
-int ft_total_ops(t_metrics operations);
-void ft_compute_disorder(t_stack *stack, int total_nbs, t_metrics *metrics); 
-void ft_show_benchmark(t_metrics metrics); 
+int		ft_total_ops(t_data operations);
+void	ft_print_counts(t_data data);
+void	ft_compute_disorder(t_stack *stack, t_data *data);
+void	ft_show_benchmark(t_data data);
 
 /* TESTS */ // To be removed
 int		check_list_integrity(t_stack *head);

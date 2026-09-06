@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 22:58:58 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/02 00:00:43 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/04 12:22:21 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-int	ft_validate_flag(char *str, t_state *flag)
+int	ft_validate_flag(char *str, t_data *data)
 {
 	int					i;
 	int					len;
@@ -43,7 +43,7 @@ int	ft_validate_flag(char *str, t_state *flag)
 		if (ft_strncmp(valid_flags[i], str, len) == 0 && (str[len] == ' '
 				|| str[len] == '\0'))
 		{
-			flag->counter[i]++;
+			data->f_counter[i]++;
 			return (1);
 		}
 		i++;
@@ -51,7 +51,7 @@ int	ft_validate_flag(char *str, t_state *flag)
 	return (ft_print_error());
 }
 
-int	ft_check_duplicity(t_state *flag)
+int	ft_check_duplicate_f(t_data *data)
 {
 	int	i;
 	int	sum;
@@ -59,30 +59,14 @@ int	ft_check_duplicity(t_state *flag)
 	i = 0;
 	while (i < FLAG_COUNT)
 	{
-		if (flag->counter[i] > 1)
+		if (data->f_counter[i] > 1)
 			return (ft_print_error());
 		i++;
 	}
-	sum = (flag->counter[BENCH] + flag->counter[SIMPLE]
-			+ flag->counter[MEDIUM] + flag->counter[COMPLEX]);
+	sum = (data->f_counter[BENCH] + data->f_counter[SIMPLE]
+			+ data->f_counter[MEDIUM] + data->f_counter[COMPLEX]);
 	if (sum > 1)
 		return (ft_print_error());
 	return (1);
 }
-void ft_get_strategy(t_state flags, t_metrics *metrics)
-{
-    int i; 
 
-    int i = 1; 
-    while (i < FLAG_COUNT)
-    {
-        if (flags.counter[i])
-		{
-            metrics->strategy = i; 
-			return; 
-        }
-		i++;    
-    }
-	metrics->strategy = ADAPTIVE; 
-	return; 
-}

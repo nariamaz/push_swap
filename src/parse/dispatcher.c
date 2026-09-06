@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   dispatcher.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 21:52:52 by maridos-          #+#    #+#             */
-/*   Updated: 2026/08/31 11:35:48 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/04 12:43:00 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_parse_arguments(int argc, char **argv, t_state *flag)
+int	ft_validate_args(int argc, char **argv, t_data *data)
 {
 	int	i;
 	int	found_number;
@@ -25,7 +25,7 @@ int	ft_parse_arguments(int argc, char **argv, t_state *flag)
 	{
 		if (ft_is_blank(argv[i]))
 			return (ft_print_error());
-		if (!ft_parsing(argv[i], flag))
+		if (!ft_parsing(argv[i], data))
 			return (0);
 		if (ft_has_number(argv[i]))
 			found_number = 1;
@@ -36,7 +36,7 @@ int	ft_parse_arguments(int argc, char **argv, t_state *flag)
 	return (1);
 }
 
-int	ft_parsing(char *string, t_state *flag)
+int	ft_parsing(char *string, t_data *data)
 {
 	while (*string != '\0')
 	{
@@ -47,14 +47,14 @@ int	ft_parsing(char *string, t_state *flag)
 		if (*string == '-' && *(string + 1) == '-')
 		{
 			string += 2;
-			if (!ft_validate_flag(string, flag))
+			if (!ft_validate_flag(string, data))
 				return (0);
 			while (*string != ' ' && *string != '\0')
 				string++;
 		}
 		else if (*string == '+' || *string == '-' || ft_isdigit(*string))
 		{
-			if (!ft_validate_number(&string, flag))
+			if (!ft_validate_number(&string, data))
 				return (0);
 		}
 		else
