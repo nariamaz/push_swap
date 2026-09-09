@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 14:14:39 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/04 13:23:51 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/08 17:24:03 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ typedef enum e_flags
 	FLAG_COUNT
 }	t_flags;
 
+/* NUMBER OPERATIONS */
+typedef enum e_operations
+{
+    SA, SB, SS, PA, PB,
+	RA, RB, RR, RRA, RRB, RRR,
+    OP_COUNT
+}   t_operations;
+
 typedef struct s_stack t_stack;
 struct s_stack
 {
@@ -36,21 +44,21 @@ struct s_stack
 	t_stack	*prev;
 };
 
-/* NUMBER OPERATIONS */
-typedef enum e_operations
+typedef struct s_stacks
 {
-    SA, SB, SS, PA, PB,
-	RA, RB, RR, RRA, RRB, RRR,
-    OP_COUNT
-}   t_operations;
+	t_stack *a;
+	t_stack *b;
+}	t_stacks;
 
 typedef struct s_data
 {
-    double disorder;
-	int	f_counter[FLAG_COUNT];
-    int op_counter[OP_COUNT];
-	int	total_nbs;
-	int strategy;
+    double		disorder;
+	int			f_counter[FLAG_COUNT];
+    int			op_counter[OP_COUNT];
+	int			total_nbs;
+	int 		strategy;
+	int			strategy_selected;
+	const char *op_names[OP_COUNT];
 }   t_data;
 
 /* ARGUMENT DISPATCH */
@@ -67,8 +75,6 @@ int		ft_check_overflow(char *start, int digits, int is_negative);
 int		ft_validate_number(char **string, t_data *data);
 int		ft_validate_flag(char *str, t_data *data);
 int 	ft_fill_stack(int argc, char** argv, t_stack **stack_a);
-void 	ft_get_strategy(t_data *data);
-
 
 /* ERROR */
 int		ft_print_error(void);
@@ -94,10 +100,20 @@ void	rrb(t_stack **stack);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 
 /* METRICS */
+void	ft_init_op_names(t_data *data);
 int		ft_total_ops(t_data operations);
-void	ft_print_counts(t_data data);
 void	ft_compute_disorder(t_stack *stack, t_data *data);
+void 	ft_get_strategy(t_data *data, t_stacks *stacks);
+void 	ft_adaptive_strategy(t_stacks *stacks, t_data *data);
+void	ft_print_counts(t_data data);
 void	ft_show_benchmark(t_data data);
+
+/* ALGORITHMS */
+void 	ft_assign_index(t_stack *stack, int total_nbs);
+int 	ft_calc_k(int total_nbs);
+void 	ft_sort_complex(t_stacks *stacks, t_data *data);
+void 	ft_sort_medium(t_stacks *stacks, t_data *data);
+void 	ft_sort_simple(t_stacks *stacks, t_data *data);
 
 /* TESTS */ // To be removed
 int		check_list_integrity(t_stack *head);
