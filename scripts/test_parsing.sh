@@ -127,6 +127,8 @@ run_test_quoted "--bench --bench" 1
 run_test_quoted "--bench 1 2 3" 0
 run_test_quoted "1 --bench 2" 0
 run_test_quoted "--simple --medium 5 -5 42" 1
+run_test_quoted "--simple --bench 5 -5 42" 0
+run_test_quoted "--bench --complex 5 -5 42" 0
 run_test_quoted "--adaptive -2147483648 2147483647" 0
 
 # 15. Flags combined with invalid numbers -> Error
