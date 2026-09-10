@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 22:58:58 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/04 12:22:21 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/08 16:06:35 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	ft_check_duplicate_f(t_data *data)
 			return (ft_print_error());
 		i++;
 	}
-	sum = (data->f_counter[BENCH] + data->f_counter[SIMPLE]
-			+ data->f_counter[MEDIUM] + data->f_counter[COMPLEX]);
+	sum = (data->f_counter[SIMPLE] + data->f_counter[MEDIUM]
+			+ data->f_counter[COMPLEX] + data->f_counter[ADAPTIVE]);
 	if (sum > 1)
 		return (ft_print_error());
 	return (1);
