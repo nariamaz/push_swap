@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 16:02:43 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/09 06:40:08 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/15 15:47:21 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,5 @@ void ft_do_op(t_operations op, t_stacks *stacks, t_data *data)
         rrr(&stacks->a, &stacks->b);
     data->op_counter[op]++;
     ft_putstr_fd((char *)data->op_names[op], 1);
+    ft_putchar_fd('\n', 1);
 }
