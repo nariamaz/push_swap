@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/08 17:04:32 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/09 06:29:05 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/14 13:07:12 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,18 @@ void ft_sort_simple(t_stacks *stacks, t_data *data)
     count = data->total_nbs;
     while (count > 0)
     {
-        pos = ft_find_min(stacks->a);
+        if (count == 1)
+            pos = 0;
+        else
+            pos = ft_find_min(stacks->a);
         ft_rotate_to_top(stacks, data, pos, count);
         ft_do_op(PB, stacks, data);
         count--;
     }
     count = data->total_nbs;
-    while (count-- > 0)
+    while (count > 0)
+    {
         ft_do_op(PA, stacks, data);
+        count--;
+    }
 }

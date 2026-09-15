@@ -116,6 +116,9 @@ void 	ft_do_op(t_operations op, t_stacks *stacks, t_data *data);
 void 	ft_sort_complex(t_stacks *stacks, t_data *data);
 void 	ft_sort_medium(t_stacks *stacks, t_data *data);
 void 	ft_sort_simple(t_stacks *stacks, t_data *data);
+int 	ft_find_min(t_stack *stack);
+void 	ft_do_op(t_operations op, t_stacks *stacks, t_data *data);
+
 
 /* TESTS */ // To be removed
 int		check_list_integrity(t_stack *head);
