@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 14:14:39 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/13 19:59:05 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/16 19:20:53 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,9 @@ void 	ft_sort_complex(t_stacks *stacks, t_data *data);
 void 	ft_sort_medium(t_stacks *stacks, t_data *data);
 void 	ft_sort_simple(t_stacks *stacks, t_data *data);
 int 	ft_find_min(t_stack *stack);
+int 	ft_find_max(t_stack *stack);
 void 	ft_do_op(t_operations op, t_stacks *stacks, t_data *data);
-
+int 	ft_sqrt(int nb);
 
 /* TESTS */ // To be removed
 int		check_list_integrity(t_stack *head);

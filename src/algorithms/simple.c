@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/08 17:04:32 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/14 13:07:12 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/16 18:45:21 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,4 @@ void ft_sort_simple(t_stacks *stacks, t_data *data)
         count--;
     }
 }
+
