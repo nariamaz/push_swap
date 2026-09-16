@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 14:39:00 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/08 17:34:37 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/16 20:05:07 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static int init_stack(int argc, char **argv, t_data* data, t_stack **stack_a)
 	if (!ft_validate_args(argc, argv, data))
 		return (0);
 	if (data->total_nbs == 1)
-	{
-		ft_print_error();
 		return (0);
-	}
 	if (!ft_check_duplicate_f(data))
 		return (0);
 	if (!ft_fill_stack(argc, argv, stack_a))
