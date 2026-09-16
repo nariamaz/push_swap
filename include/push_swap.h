@@ -109,8 +109,10 @@ void	ft_print_counts(t_data data);
 void	ft_show_benchmark(t_data data);
 
 /* ALGORITHMS */
+int 	ft_find_min(t_stack *stack);
 void 	ft_assign_index(t_stack *stack, int total_nbs);
 int 	ft_calc_k(int total_nbs);
+void 	ft_do_op(t_operations op, t_stacks *stacks, t_data *data);
 void 	ft_sort_complex(t_stacks *stacks, t_data *data);
 void 	ft_sort_medium(t_stacks *stacks, t_data *data);
 void 	ft_sort_simple(t_stacks *stacks, t_data *data);
