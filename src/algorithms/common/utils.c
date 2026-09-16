@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 16:02:43 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/15 15:47:21 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/16 18:29:20 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,28 @@ void ft_do_op(t_operations op, t_stacks *stacks, t_data *data)
     data->op_counter[op]++;
     ft_putstr_fd((char *)data->op_names[op], 1);
     ft_putchar_fd('\n', 1);
+}
+
+int ft_find_max(t_stack *stack)
+{
+    t_stack *current;
+    int      max_position;
+    int      max_value;
+    int      i;
+
+    current = stack;
+    max_value = current->content;
+    max_position = 0;
+    i = 0;
+    while (current->next != stack)
+    {
+        current = current->next;
+        i++;
+        if (current->content > max_value)
+        {
+            max_value = current->content;
+            max_position = i;
+        }
+    }
+    return (max_position);
 }
