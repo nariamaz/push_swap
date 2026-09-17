@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/08 17:04:25 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/16 19:23:06 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/16 22:20:45 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void ft_rotate_b_top(t_stacks *stacks, t_data *data, int pos, int count)
     }
 }
 
-static void ft_merge_chunks(t_stacks *stacks, t_data *data)
+static void ft_merge_chunks(t_stacks *stacks, t_data *data, int chunk_size)
 {
     int b_counter;
     int max;
@@ -72,7 +72,7 @@ static void ft_merge_chunks(t_stacks *stacks, t_data *data)
         if (b_counter == 1)
             max = 0;
         else
-            max = ft_find_max(stacks->b);
+            max = ft_find_max_in_chunk(stacks->b, chunk_size);
         ft_rotate_b_top(stacks, data, max, b_counter);
         ft_do_op(PA, stacks, data);
         b_counter--;
@@ -81,12 +81,12 @@ static void ft_merge_chunks(t_stacks *stacks, t_data *data)
 
 void ft_sort_medium(t_stacks *stacks, t_data *data)
 {
-    int chunk;
+    int chunk_size;
 
-    chunk = ft_sqrt(data->total_nbs);
+    chunk_size = ft_sqrt(data->total_nbs);
     ft_assign_index(stacks->a, data->total_nbs);
-    ft_separate_chunks(stacks, data, chunk);
-    ft_merge_chunks(stacks, data);
+    ft_separate_chunks(stacks, data, chunk_size);
+    ft_merge_chunks(stacks, data, chunk_size);
 }
 
 int ft_sqrt(int nb)

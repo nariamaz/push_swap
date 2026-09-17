@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 16:02:43 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/16 18:29:20 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/17 04:11:25 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,6 @@ void ft_assign_index(t_stack *stack, int total_nbs)
         current = current->next;
         i++;
     }
-}
-
-int ft_calc_k(int total_nbs)
-{
-    int max_value;
-    int k;
-    
-    max_value = total_nbs - 1;
-    k = 0;
-    while (max_value > 0)
-    {
-        max_value >>= 1;
-        k++;        
-    }
-    return (k);
 }
 
 int ft_find_min(t_stack *stack)
@@ -105,26 +90,28 @@ void ft_do_op(t_operations op, t_stacks *stacks, t_data *data)
     ft_putchar_fd('\n', 1);
 }
 
-int ft_find_max(t_stack *stack)
+int ft_find_max_in_chunk(t_stack *stack, int chunk_size)
 {
     t_stack *current;
-    int      max_position;
+    int      range_min;
     int      max_value;
+    int      max_pos;
     int      i;
 
+    range_min = (stack->index / chunk_size) * chunk_size;
     current = stack;
     max_value = current->content;
-    max_position = 0;
+    max_pos = 0;
     i = 0;
-    while (current->next != stack)
+    while (current->index >= range_min)
     {
-        current = current->next;
-        i++;
         if (current->content > max_value)
         {
             max_value = current->content;
-            max_position = i;
+            max_pos = i;
         }
+        current = current->next;
+        i++;
     }
-    return (max_position);
+    return (max_pos);
 }

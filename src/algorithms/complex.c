@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 22:12:26 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/16 16:09:45 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/16 23:40:41 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void ft_sort_complex(t_stacks *stacks, t_data *data)
 {
     int bits_needed;
     int bits_moved;
-
+    
     ft_assign_index(stacks->a, data->total_nbs);
     bits_needed = ft_calc_k(data->total_nbs);
     bits_moved = 0;
@@ -46,4 +46,19 @@ void ft_sort_complex(t_stacks *stacks, t_data *data)
         bits_moved++;
         bits_needed--;
     }
+}
+
+int ft_calc_k(int total_nbs)
+{
+    int max_value;
+    int k;
+    
+    max_value = total_nbs - 1;
+    k = 0;
+    while (max_value > 0)
+    {
+        max_value >>= 1;
+        k++;        
+    }
+    return (k);
 }
