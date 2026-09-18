@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 14:14:39 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/17 03:30:57 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/17 23:39:03 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ int 	ft_find_min(t_stack *stack);
 int 	ft_find_max_in_chunk(t_stack *stack, int chunk_size);
 void 	ft_do_op(t_operations op, t_stacks *stacks, t_data *data);
 int 	ft_sqrt(int nb);
+void	ft_sort_small(t_stacks *stacks, t_data *data);
+void	ft_rotate_a_top(t_stacks *stacks, t_data *data, int pos, int total);
 
 /* TESTS */ // To be removed
 int		check_list_integrity(t_stack *head);

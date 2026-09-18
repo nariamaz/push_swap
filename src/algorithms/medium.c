@@ -6,7 +6,7 @@
 /*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/08 17:04:25 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/16 22:20:45 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/17 23:46:18 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,15 @@ void ft_sort_medium(t_stacks *stacks, t_data *data)
 {
     int chunk_size;
 
-    chunk_size = ft_sqrt(data->total_nbs);
-    ft_assign_index(stacks->a, data->total_nbs);
-    ft_separate_chunks(stacks, data, chunk_size);
-    ft_merge_chunks(stacks, data, chunk_size);
+    if (data->total_nbs <= 5)
+        ft_sort_small(stacks, data);
+    else
+    {
+        chunk_size = ft_sqrt(data->total_nbs);
+        ft_assign_index(stacks->a, data->total_nbs);
+        ft_separate_chunks(stacks, data, chunk_size);
+        ft_merge_chunks(stacks, data, chunk_size);
+    }    
 }
 
 int ft_sqrt(int nb)
