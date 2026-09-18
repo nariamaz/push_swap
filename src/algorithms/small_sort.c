@@ -14,19 +14,19 @@
 
 static int	ft_find_min_pos(t_stack *stack)
 {
-	t_stack *current;
-    int	min;
-	int	pos;
-	int	i;
+	t_stack	*current;
+	int		min;
+	int		pos;
+	int		i;
 
-    current = stack;
+	current = stack;
 	min = current->index;
 	pos = 0;
 	i = 0;
 	while (current->next != stack)
 	{
-        current = current->next;
-        i++;
+		current = current->next;
+		i++;
 		if (current->index < min)
 		{
 			min = stack->index;
@@ -80,7 +80,7 @@ void	ft_sort_small(t_stacks *stacks, t_data *data)
 	if (data->total_nbs > 3)
 	{
 		ft_assign_index(stacks->a, data->total_nbs);
-		ft_push_two_min(stacks, data);		
+		ft_push_two_min(stacks, data);
 	}
 	ft_sort_three(stacks, data);
 	ft_do_op(PA, stacks, data);

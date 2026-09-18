@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-static int init_stack(int argc, char **argv, t_data* data, t_stack **stack_a)
+static int	init_stack(int argc, char **argv, t_data *data, t_stack **stack_a)
 {
 	if (!ft_validate_args(argc, argv, data))
 		return (0);
@@ -26,7 +26,7 @@ static int init_stack(int argc, char **argv, t_data* data, t_stack **stack_a)
 	return (1);
 }
 
-static int select_strategy (t_data *data, t_stacks *stacks)
+static int	select_strategy(t_data *data, t_stacks *stacks)
 {
 	ft_compute_disorder(stacks->a, data);
 	if (data->disorder == 0 && data->f_counter[BENCH])
@@ -42,10 +42,10 @@ static int select_strategy (t_data *data, t_stacks *stacks)
 
 int	main(int argc, char **argv)
 {
-	t_stack *stack_a;
-	t_stack	*stack_b;
-	t_stacks stacks;
-	t_data data;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+	t_stacks	stacks;
+	t_data		data;
 
 	stack_a = NULL;
 	stack_b = NULL;

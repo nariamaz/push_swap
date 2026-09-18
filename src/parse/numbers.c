@@ -40,10 +40,10 @@ int	ft_validate_number(char **string, t_data *data)
 	return (1);
 }
 
-int ft_atoi(char **str)
+int	ft_atoi(char **str)
 {
-    int result;
-    int sign;
+	int	result;
+	int	sign;
 
 	sign = 1;
 	if (**str == '+' || **str == '-')
@@ -85,43 +85,43 @@ int	ft_check_overflow(char *start, int digits, int is_negative)
 	return (1);
 }
 
-static int ft_extract_number(char *str, t_stack **stack_a)
+static int	ft_extract_number(char *str, t_stack **stack_a)
 {
-    int num;
+	int	num;
 
-    while (*str != '\0')
-    {
-        if (*str == '-' && *(str + 1) == '-')
-        {
-            while (*str != ' ' && *str != '\0')
-                str++;
-        }
-        else if (*str == '+' || *str == '-' || ft_isdigit(*str))
-        {
-            num = ft_atoi(&str);
-            if (check_duplicate_n(*stack_a, num))
-            {
-                clean_list(stack_a);
-                return (ft_print_error());
-            }
-            add_to_list(stack_a, num);
-        }
-        else
-            str++;
-    }
-    return (1);
+	while (*str != '\0')
+	{
+		if (*str == '-' && *(str + 1) == '-')
+		{
+			while (*str != ' ' && *str != '\0')
+				str++;
+		}
+		else if (*str == '+' || *str == '-' || ft_isdigit(*str))
+		{
+			num = ft_atoi(&str);
+			if (check_duplicate_n(*stack_a, num))
+			{
+				clean_list(stack_a);
+				return (ft_print_error());
+			}
+			add_to_list(stack_a, num);
+		}
+		else
+			str++;
+	}
+	return (1);
 }
 
-int ft_fill_stack(int argc, char **argv, t_stack **stack_a)
+int	ft_fill_stack(int argc, char **argv, t_stack **stack_a)
 {
-    int i;
+	int	i;
 
-    i = 1;
-    while (i < argc)
-    {
-        if (!ft_extract_number(argv[i], stack_a))
-            return (0);
-        i++;
-    }
-    return (1);
+	i = 1;
+	while (i < argc)
+	{
+		if (!ft_extract_number(argv[i], stack_a))
+			return (0);
+		i++;
+	}
+	return (1);
 }

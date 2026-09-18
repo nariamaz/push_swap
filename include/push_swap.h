@@ -30,12 +30,21 @@ typedef enum e_flags
 /* NUMBER OPERATIONS */
 typedef enum e_operations
 {
-    SA, SB, SS, PA, PB,
-	RA, RB, RR, RRA, RRB, RRR,
-    OP_COUNT
-}   t_operations;
+	SA,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR,
+	OP_COUNT
+}	t_operations;
 
-typedef struct s_stack t_stack;
+typedef struct s_stack	t_stack;
 struct s_stack
 {
 	int		content;
@@ -46,20 +55,20 @@ struct s_stack
 
 typedef struct s_stacks
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
 }	t_stacks;
 
 typedef struct s_data
 {
-    double		disorder;
+	double		disorder;
 	int			f_counter[FLAG_COUNT];
-    int			op_counter[OP_COUNT];
+	int			op_counter[OP_COUNT];
 	int			total_nbs;
-	int 		strategy;
+	int			strategy;
 	int			strategy_selected;
-	const char *op_names[OP_COUNT];
-}   t_data;
+	const char	*op_names[OP_COUNT];
+}	t_data;
 
 /* ARGUMENT DISPATCH */
 int		ft_is_blank(char *str);
@@ -74,7 +83,7 @@ int		ft_check_duplicate_f(t_data *data);
 int		ft_check_overflow(char *start, int digits, int is_negative);
 int		ft_validate_number(char **string, t_data *data);
 int		ft_validate_flag(char *str, t_data *data);
-int 	ft_fill_stack(int argc, char** argv, t_stack **stack_a);
+int		ft_fill_stack(int argc, char **argv, t_stack **stack_a);
 
 /* ERROR */
 int		ft_print_error(void);
@@ -103,23 +112,23 @@ void	rrr(t_stack **stack_a, t_stack **stack_b);
 void	ft_init_op_names(t_data *data);
 int		ft_total_ops(t_data operations);
 void	ft_compute_disorder(t_stack *stack, t_data *data);
-void 	ft_get_strategy(t_data *data, t_stacks *stacks);
-void 	ft_adaptive_strategy(t_stacks *stacks, t_data *data);
+void	ft_get_strategy(t_data *data, t_stacks *stacks);
+void	ft_adaptive_strategy(t_stacks *stacks, t_data *data);
 void	ft_print_counts(t_data data);
 void	ft_show_benchmark(t_data data);
 
 /* ALGORITHMS */
-int 	ft_find_min(t_stack *stack);
-void 	ft_assign_index(t_stack *stack, int total_nbs);
-int 	ft_calc_k(int total_nbs);
-void 	ft_do_op(t_operations op, t_stacks *stacks, t_data *data);
-void 	ft_sort_complex(t_stacks *stacks, t_data *data);
-void 	ft_sort_medium(t_stacks *stacks, t_data *data);
-void 	ft_sort_simple(t_stacks *stacks, t_data *data);
-int 	ft_find_min(t_stack *stack);
-int 	ft_find_max_in_chunk(t_stack *stack, int chunk_size);
-void 	ft_do_op(t_operations op, t_stacks *stacks, t_data *data);
-int 	ft_sqrt(int nb);
+int		ft_find_min(t_stack *stack);
+void	ft_assign_index(t_stack *stack, int total_nbs);
+int		ft_calc_k(int total_nbs);
+void	ft_do_op(t_operations op, t_stacks *stacks, t_data *data);
+void	ft_sort_complex(t_stacks *stacks, t_data *data);
+void	ft_sort_medium(t_stacks *stacks, t_data *data);
+void	ft_sort_simple(t_stacks *stacks, t_data *data);
+int		ft_find_min(t_stack *stack);
+int		ft_find_max_in_chunk(t_stack *stack, int chunk_size);
+void	ft_do_op(t_operations op, t_stacks *stacks, t_data *data);
+int		ft_sqrt(int nb);
 void	ft_sort_small(t_stacks *stacks, t_data *data);
 void	ft_rotate_a_top(t_stacks *stacks, t_data *data, int pos, int total);
 

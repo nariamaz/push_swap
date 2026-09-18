@@ -600,7 +600,7 @@ int	main(void)
 	assert(list_a == NULL);
 	assert(list_b == NULL);
 	printf(GREEN "OK\n");
-	
+
 	printf(CYAN "47." MAGENTA " RR with Stack A with 1 Node and Stack B empty: ");
 	clean_list(&list_a);
 	clean_list(&list_b);

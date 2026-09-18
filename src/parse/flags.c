@@ -69,4 +69,3 @@ int	ft_check_duplicate_f(t_data *data)
 		return (ft_print_error());
 	return (1);
 }
-

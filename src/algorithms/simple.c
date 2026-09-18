@@ -32,31 +32,31 @@ void	ft_rotate_a_top(t_stacks *stacks, t_data *data, int pos, int total)
 	}
 }
 
-void ft_sort_simple(t_stacks *stacks, t_data *data)
+void	ft_sort_simple(t_stacks *stacks, t_data *data)
 {
-    int count;
-    int pos;
+	int	count;
+	int	pos;
 
-    if (data->total_nbs <= 5)
-        ft_sort_small(stacks, data);
-    else
-    {
-        count = data->total_nbs;
-        while (count > 0)
-        {
-            if (count == 1)
-                pos = 0;
-            else
-                pos = ft_find_min(stacks->a);
-            ft_rotate_a_top(stacks, data, pos, count);
-            ft_do_op(PB, stacks, data);
-            count--;
-        }
-        count = data->total_nbs;
-        while (count > 0)
-        {
-            ft_do_op(PA, stacks, data);
-            count--;
-        }        
-    }
+	if (data->total_nbs <= 5)
+		ft_sort_small(stacks, data);
+	else
+	{
+		count = data->total_nbs;
+		while (count > 0)
+		{
+			if (count == 1)
+				pos = 0;
+			else
+				pos = ft_find_min(stacks->a);
+			ft_rotate_a_top(stacks, data, pos, count);
+			ft_do_op(PB, stacks, data);
+			count--;
+		}
+		count = data->total_nbs;
+		while (count > 0)
+		{
+			ft_do_op(PA, stacks, data);
+			count--;
+		}
+	}
 }
