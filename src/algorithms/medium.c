@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: hequeiro <hequeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/08 17:04:25 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/17 23:46:18 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/18 10:36:16 by hequeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	ft_sort_medium(t_stacks *stacks, t_data *data)
 	else
 	{
 		chunk_size = ft_sqrt(data->total_nbs);
-		ft_assign_index(stacks->a, data->total_nbs);
 		ft_separate_chunks(stacks, data, chunk_size);
 		ft_merge_chunks(stacks, data, chunk_size);
 	}

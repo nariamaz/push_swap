@@ -38,6 +38,7 @@ void	print_node(t_stack *node)
 		return ;
 	}
 	printf("Current Node's content: %d\n", node->content);
+	printf("Current Node's index: %d\n", node->index);
 	if (node->next == NULL)
 	{
 		printf("\tNext's content: (null)\n");

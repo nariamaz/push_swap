@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dispatcher.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hequeiro <hequeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 21:52:52 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/04 12:43:00 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/18 12:28:15 by hequeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_validate_args(int argc, char **argv, t_data *data)
 	int	found_number;
 
 	if (argc < 2)
-		return (1);
+		return (0);
 	found_number = 0;
 	i = 1;
 	while (i < argc)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hequeiro <hequeiro@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: hequeiro <hequeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 17:22:38 by hequeiro          #+#    #+#             */
-/*   Updated: 2026/08/27 18:05:31 by hequeiro         ###   ########.fr       */
+/*   Updated: 2026/09/18 12:07:08 by hequeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ static void	sx(t_stack **stack)
 	}
 	else
 	{
+		second->next->prev = first;
 		first->next = second->next;
 		second->prev = first->prev;
+		first->prev->next = second;
 		first->prev = second;
 		second->next = first;
 	}

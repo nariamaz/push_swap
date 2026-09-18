@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: hequeiro <hequeiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 22:12:26 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/17 23:46:42 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/18 10:36:20 by hequeiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_sort_complex(t_stacks *stacks, t_data *data)
 		ft_sort_small(stacks, data);
 	else
 	{
-		ft_assign_index(stacks->a, data->total_nbs);
 		bits_needed = ft_calc_k(data->total_nbs);
 		bits_moved = 0;
 		while (bits_needed > 0)
