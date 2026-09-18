@@ -16,7 +16,6 @@ CFLAGS		:=	-Wall -Wextra -Werror -g
 LIBFT_DIR	= 	libft
 LIBFT		= 	$(LIBFT_DIR)/libft.a
 INCLUDES  	 = -Iinclude -I$(LIBFT_DIR)
-MAKEFLAGS	:=	--silent
 RM			:=	rm -f
 
 # Diretórios
