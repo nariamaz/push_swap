@@ -63,7 +63,7 @@ all: $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re
 
 libft:
 	$(MAKE) -C $(LIBFT_DIR)
