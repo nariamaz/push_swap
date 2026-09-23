@@ -6,7 +6,7 @@
 #    By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 15:56:40 by maridos-          #+#    #+#              #
-#    Updated: 2026/09/17 23:34:51 by maridos-         ###   ########.fr        #
+#    Updated: 2026/09/22 15:51:27 by maridos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ SRC_COMMON		= $(DIR_COMMON)utils.c
 SRC_ALGORITHMS	= $(DIR_ALGORITHMS)complex.c \
 				  $(DIR_ALGORITHMS)medium.c \
 				  $(DIR_ALGORITHMS)simple.c \
-				  $(DIR_ALGORITHMS)small_sort.c
+				  $(DIR_ALGORITHMS)small_sort.c \
+				  $(DIR_ALGORITHMS)medium_helpers.c
 				  
 # Junção de todos os arquivos fonte
 SRCS = $(SRC_MAIN) $(SRC_PARSE) $(SRC_ERROR) $(SRC_STACK) $(SRC_OPS) \

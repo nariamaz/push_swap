@@ -3,104 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   medium.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hequeiro <hequeiro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/08 17:04:25 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/18 10:36:16 by hequeiro         ###   ########.fr       */
+/*   Updated: 2026/09/22 15:49:13 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_separate_chunks(t_stacks *stacks, t_data *data, int chunk)
+static void	push_chunks_to_b(t_stacks *stacks, int chunk_base, t_data *data)
 {
-	int	b_counter;
-	int	seen;
-	int	i;
+	int	chunk_limit;
+	int	pushed;
+	int	stack_a;
 
-	i = 0;
-	b_counter = 0;
-	while (b_counter < data->total_nbs)
+	pushed = 0;
+	chunk_limit = chunk_base;
+	stack_a = data->total_nbs;
+	while (stack_a > 3)
 	{
-		seen = 0;
-		while (seen < data->total_nbs - b_counter)
+		if (stacks->a->index < chunk_limit)
 		{
-			if (stacks->a->index >= (chunk * i)
-				&& stacks->a->index <= ((chunk - 1) + (chunk * i)))
-			{
-				ft_do_op(PB, stacks, data);
-				b_counter++;
-			}
-			else
-			{
-				ft_do_op(RA, stacks, data);
-				seen++;
-			}
+			ft_do_op(PB, stacks, data);
+			pushed++;
+			stack_a--;
+			if (pushed >= chunk_limit)
+				chunk_limit += chunk_base;
 		}
-		i++;
-	}
-}
-
-static void	ft_rotate_b_top(t_stacks *stacks, t_data *data, int pos, int count)
-{
-	if (pos <= count - pos)
-	{
-		while (pos > 0)
-		{
-			ft_do_op(RB, stacks, data);
-			pos--;
-		}
-	}
-	else
-	{
-		while (pos < count)
-		{
-			ft_do_op(RRB, stacks, data);
-			pos++;
-		}
-	}
-}
-
-static void	ft_merge_chunks(t_stacks *stacks, t_data *data, int chunk_size)
-{
-	int	b_counter;
-	int	max;
-
-	b_counter = data->total_nbs;
-	while (b_counter > 0)
-	{
-		if (b_counter == 1)
-			max = 0;
 		else
-			max = ft_find_max_in_chunk(stacks->b, chunk_size);
-		ft_rotate_b_top(stacks, data, max, b_counter);
+			ft_do_op(RA, stacks, data);
+	}
+}
+
+static void	final_alignment(t_stacks *stacks, t_data *data)
+{
+	int	pos_min;
+
+	pos_min = ft_find_min_pos(stacks->a, data->total_nbs);
+	ft_rotate_a_top(stacks, data, pos_min, data->total_nbs);
+}
+
+static void	push_all_to_a(t_stacks *stacks, t_data *data)
+{
+	int	size_a;
+	int	pos_to_insert;
+
+	size_a = 3;
+	while (stacks->b)
+	{
+		pos_to_insert = get_target_for_b(stacks);
+		ft_rotate_a_top(stacks, data, pos_to_insert, size_a);
 		ft_do_op(PA, stacks, data);
-		b_counter--;
+		size_a++;
 	}
 }
 
 void	ft_sort_medium(t_stacks *stacks, t_data *data)
 {
-	int	chunk_size;
+	int	chunk_base;
 
-	if (data->total_nbs <= 5)
-		ft_sort_small(stacks, data);
-	else
-	{
-		chunk_size = ft_sqrt(data->total_nbs);
-		ft_separate_chunks(stacks, data, chunk_size);
-		ft_merge_chunks(stacks, data, chunk_size);
-	}
-}
-
-int	ft_sqrt(int nb)
-{
-	int	i;
-
-	i = 0;
-	if (nb <= 0)
-		return (0);
-	while (i * i <= nb)
-		i++;
-	return (i - 1);
+	chunk_base = ft_sqrt(data->total_nbs);
+	push_chunks_to_b(stacks, chunk_base, data);
+	ft_sort_three(stacks, data);
+	push_all_to_a(stacks, data);
+	final_alignment(stacks, data);
 }
