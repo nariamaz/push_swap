@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 15:56:40 by maridos-          #+#    #+#              #
-#    Updated: 2026/09/22 15:51:27 by maridos-         ###   ########.fr        #
+#    Updated: 2026/09/23 09:57:44 by maridos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,14 +44,14 @@ SRC_OPS   		= $(DIR_OPS)ops_swap.c \
 				  $(DIR_OPS)ops_reverse_rotate.c
 SRC_METRICS 	= $(DIR_METRICS)benchmark.c \
 				  $(DIR_METRICS)strategy.c \
-				  $(DIR_METRICS)operations.c 
+				  $(DIR_METRICS)operations.c
 SRC_COMMON		= $(DIR_COMMON)utils.c
 SRC_ALGORITHMS	= $(DIR_ALGORITHMS)complex.c \
 				  $(DIR_ALGORITHMS)medium.c \
 				  $(DIR_ALGORITHMS)simple.c \
 				  $(DIR_ALGORITHMS)small_sort.c \
 				  $(DIR_ALGORITHMS)medium_helpers.c
-				  
+
 # Junção de todos os arquivos fonte
 SRCS = $(SRC_MAIN) $(SRC_PARSE) $(SRC_ERROR) $(SRC_STACK) $(SRC_OPS) \
 		$(SRC_METRICS) $(SRC_COMMON) $(SRC_ALGORITHMS)
@@ -67,7 +67,7 @@ $(LIBFT):
 
 libft:
 	$(MAKE) -C $(LIBFT_DIR)
-	
+
 $(NAME): libft $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
 
@@ -83,20 +83,3 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-
-# Stack related
-SRC_TEST_STACK = $(DIR_TESTS)test_stack.c
-SRC_TEST_FILL  = $(DIR_TESTS)test_filling_stack.c
-
-SRCS_COMMON_TEST = $(SRC_PARSE) $(SRC_ERROR) $(SRC_STACK) $(SRC_OPS)
-
-OBJS_TEST_STACK = $(SRC_TEST_STACK:.c=.o) $(SRCS_COMMON_TEST:.c=.o)
-OBJS_TEST_FILL  = $(SRC_TEST_FILL:.c=.o) $(SRCS_COMMON_TEST:.c=.o)
-
-test_stack: libft $(OBJS_TEST_STACK)
-	$(CC) $(CFLAGS) $(OBJS_TEST_STACK) -L$(LIBFT_DIR) -lft -o test_stack
-	valgrind --leak-check=full --show-leak-kinds=all ./test_stack
-
-test_fill_stack: libft $(OBJS_TEST_FILL)
-	$(CC) $(CFLAGS) $(OBJS_TEST_FILL) -L$(LIBFT_DIR) -lft -o test_fill_stack
-	valgrind --leak-check=full --show-leak-kinds=all ./test_fill_stack

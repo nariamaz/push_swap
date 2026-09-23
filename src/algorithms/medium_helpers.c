@@ -3,14 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   medium_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 15:49:45 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/22 15:49:58 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/23 10:15:29 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	find_closest_above(t_stack *a, int b_idx, int *size)
+{
+	t_stack	*current;
+	int		min_bigger;
+	int		target_pos;
+
+	current = a;
+	min_bigger = 2147483647;
+	target_pos = -1;
+	*size = 0;
+	while (current)
+	{
+		if (current->index > b_idx && current->index < min_bigger)
+		{
+			min_bigger = current->index;
+			target_pos = *size;
+		}
+		current = current->next;
+		(*size)++;
+		if (current == a)
+			break ;
+	}
+	return (target_pos);
+}
 
 int	ft_find_min_pos(t_stack *stack, int size)
 {
@@ -40,31 +65,13 @@ int	ft_find_min_pos(t_stack *stack, int size)
 
 int	get_target_for_b(t_stacks *stacks)
 {
-	t_stack	*current_a;
-	int		min_bigger;
-	int		target_pos;
-	int		i;
+	int	target_pos;
+	int	size;
 
-	if (!stacks->a)
+	if (!stacks->a || !stacks->b)
 		return (0);
-	current_a = stacks->a;
-	min_bigger = 2147483647;
-	target_pos = -1;
-	i = 0;
-	while (current_a)
-	{
-		if (current_a->index > stacks->b->index
-			&& current_a->index < min_bigger)
-		{
-			min_bigger = current_a->index;
-			target_pos = i;
-		}
-		current_a = current_a->next;
-		i++;
-		if (current_a == stacks->a)
-			break ;
-	}
+	target_pos = find_closest_above(stacks->a, stacks->b->index, &size);
 	if (target_pos == -1)
-		target_pos = ft_find_min_pos(stacks->a, i);
+		target_pos = ft_find_min_pos(stacks->a, size);
 	return (target_pos);
 }

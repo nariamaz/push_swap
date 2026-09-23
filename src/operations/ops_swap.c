@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hequeiro <hequeiro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 17:22:38 by hequeiro          #+#    #+#             */
-/*   Updated: 2026/09/18 12:07:08 by hequeiro         ###   ########.fr       */
+/*   Updated: 2026/09/23 10:31:23 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ static void	sx(t_stack **stack)
 	t_stack	*first;
 	t_stack	*second;
 
-	if (*stack == NULL)
-		return ;
-	if ((*stack)->next == NULL)
+	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
 	first = *stack;
 	second = (*stack)->next;

@@ -40,7 +40,6 @@ void	ft_sort_three(t_stacks *stacks, t_data *data)
 {
 	if (stacks->a->index > stacks->a->next->index)
 		ft_do_op(SA, stacks, data);
-	
 	if (stacks->a->index > stacks->a->prev->index)
 		ft_do_op(RRA, stacks, data);
 	else if (stacks->a->next->index > stacks->a->next->next->index)
@@ -68,7 +67,7 @@ void	ft_sort_small(t_stacks *stacks, t_data *data)
 	if (data->total_nbs == 2)
 	{
 		ft_do_op(SA, stacks, data);
-		return ;		
+		return ;
 	}
 	if (data->total_nbs > 3)
 		ft_push_two_min(stacks, data);
@@ -81,5 +80,5 @@ void	ft_sort_small(t_stacks *stacks, t_data *data)
 	{
 		ft_do_op(PA, stacks, data);
 		ft_do_op(PA, stacks, data);
-	}	
+	}
 }

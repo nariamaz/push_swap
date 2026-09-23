@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 14:39:00 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/22 15:52:17 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/23 10:26:22 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv)
 	stacks.b = stack_b;
 	ft_assign_index(stacks.a, data.total_nbs);
 	if (!select_strategy (&data, &stacks))
-	return (0);
+		return (0);
 	clean_list(&stacks.a);
 	if (data.f_counter[BENCH])
 		ft_show_benchmark(data);

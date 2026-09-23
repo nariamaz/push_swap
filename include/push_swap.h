@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 14:14:39 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/22 15:50:35 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/23 10:19:10 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	ft_sort_small(t_stacks *stacks, t_data *data);
 void	ft_rotate_a_top(t_stacks *stacks, t_data *data, int pos, int total);
 void	ft_sort_three(t_stacks *stacks, t_data *data);
 int		ft_sqrt(int nb);
-int 	ft_find_min_pos(t_stack *stack, int size);
+int		ft_find_min_pos(t_stack *stack, int size);
 int		get_target_for_b(t_stacks *stacks);
 
 /* TESTS */ // To be removed

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 16:02:43 by maridos-          #+#    #+#             */
-/*   Updated: 2026/09/22 02:06:46 by maridos-         ###   ########.fr       */
+/*   Updated: 2026/09/23 10:05:07 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_assign_index(t_stack *stack, int total_nbs)
 		rank = 0;
 		while (compare != current)
 		{
-			if (current-> content > compare->content)
+			if (current->content > compare->content)
 				rank++;
 			compare = compare->next;
 		}
@@ -90,30 +90,30 @@ void	ft_do_op(t_operations op, t_stacks *stacks, t_data *data)
 	ft_putchar_fd('\n', 1);
 }
 
-int ft_find_max_in_chunk(t_stack *stack, int chunk_size, int b_size)
+int	ft_find_max_in_chunk(t_stack *stack, int chunk_size, int b_size)
 {
-    t_stack *current;
-    int     range_min;
-    int     max_value;
-    int     max_pos;
-    int     i;
+	t_stack	*current;
+	int		range_min;
+	int		max_value;
+	int		max_pos;
+	int		i;
 
-    range_min = (stack->index / chunk_size) * chunk_size;
-    current = stack;
-    max_value = current->content;
-    max_pos = 0;
-    i = 0;
-    while (current && current->index >= range_min && i < b_size)
-    {
-        if (current->content > max_value)
-        {
-            max_value = current->content;
-            max_pos = i;
-        }
-        current = current->next;
-        i++;
-    }
-    return (max_pos);
+	range_min = (stack->index / chunk_size) * chunk_size;
+	current = stack;
+	max_value = current->content;
+	max_pos = 0;
+	i = 0;
+	while (current && current->index >= range_min && i < b_size)
+	{
+		if (current->content > max_value)
+		{
+			max_value = current->content;
+			max_pos = i;
+		}
+		current = current->next;
+		i++;
+	}
+	return (max_pos);
 }
 
 int	ft_sqrt(int nb)

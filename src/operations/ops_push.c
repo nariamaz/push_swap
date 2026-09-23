@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ops_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hequeiro <hequeiro@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 18:21:58 by hequeiro          #+#    #+#             */
-/*   Updated: 2026/08/27 18:21:58 by hequeiro         ###   ########.fr       */
+/*   Updated: 2026/09/23 10:17:21 by maridos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 
 static void	set_node_directions(t_stack **node, t_stack *prev, t_stack *next);
 static void	stitch_src(t_stack **src, t_stack *prev, t_stack *next);
@@ -26,16 +26,13 @@ static void	px(t_stack **src, t_stack **dst)
 	node = *src;
 	tmp_prev = (*src)->prev;
 	tmp_next = (*src)->next;
-	// 0 nodes in DST
 	if (*dst == NULL)
 		set_node_directions(&node, NULL, NULL);
-	// 1 node in DST
 	else if ((*dst)->next == NULL)
 	{
 		set_node_directions(dst, node, node);
 		set_node_directions(&node, *dst, *dst);
 	}
-	// 2+ nodes in DST
 	else
 	{
 		set_node_directions(&node, (*dst)->prev, *dst);
@@ -71,14 +68,10 @@ static void	set_node_directions(t_stack **node, t_stack *prev, t_stack *next)
 
 static void	stitch_src(t_stack **src, t_stack *prev, t_stack *next)
 {
-	// If originally 1 node in SRC
-	// Naturally will point to NULL at the end
 	if (prev && next)
 	{
-		// Originally 2 nodes in SRC
 		if (prev == next)
 			set_node_directions(&next, NULL, NULL);
-		// Originally 2+ nodes in SRC
 		else
 		{
 			prev->next = next;

@@ -1,13 +1,26 @@
-*This project has been created as part of the 42 curriculum by <maridos->, <hequeiro>.*
+*This project has been created as part of the 42 curriculum by maridos-, hequeiro.*
 
 # push_swap
 
 ## Description
 
 `push_swap` sorts a stack of integers using two stacks (`a` and `b`) and a
-restricted set of operations (`sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`,
-`rra`, `rrb`, `rrr`), aiming to produce the sorted stack `a` using as few
+restricted set of operations, aiming to produce the sorted stack `a` using as few
 operations as possible.
+
+| Instruction | Name | Description | Target |
+| :--- | :--- | :--- | :--- |
+| `sa` | Swap A | Swap the top 2 elements of Stack A | Stack A |
+| `sb` | Swap B | Swap the top 2 elements of Stack B | Stack B |
+| `ss` | Swap Both | Execute `sa` and `sb` simultaneously | Both |
+| `pa` | Push A | Move top element from Stack B to top of Stack A | Stack A |
+| `pb` | Push B | Move top element from Stack A to top of Stack B | Stack B |
+| `ra` | Rotate A | Shift all elements up by 1 (top becomes bottom) | Stack A |
+| `rb` | Rotate B | Shift all elements up by 1 (top becomes bottom) | Stack B |
+| `rr` | Rotate Both | Execute `ra` and `rb` simultaneously | Both |
+| `rra` | Reverse Rotate A | Shift all elements down by 1 (bottom becomes top) | Stack A |
+| `rrb` | Reverse Rotate B | Shift all elements down by 1 (bottom becomes top) | Stack B |
+| `rrr` | Reverse Rotate Both | Execute `rra` and `rrb` simultaneously | Both |
 
 The program embeds four sorting strategies — three fixed-complexity
 algorithms and one adaptive dispatcher that picks between them based on how
@@ -20,59 +33,59 @@ metrics behind each run.
 main
  ├─ ft_validate_args(argc, argv, &data)                                           [src/parse/dispatcher.c]
  │   └─ per argv[i]:
- │        ├─ ft_is_blank(argv[i])       
+ │        ├─ ft_is_blank(argv[i])
  │        │  → rejects empty / whitespace-only tokens
- │        │                                     
+ │        │
  │        ├─ ft_parsing(argv[i], &data)
  │        │    ├─ ft_validate_flag(token, &data)                                  [src/parse/flags.c]
  │        │    │  → matches --bench/--simple/--medium/--complex/--adaptive,
  │        │    │    increments data.f_counter[]
- │        │    │         
+ │        │    │
  │        │    └─ ft_validate_number(&token, &data)                               [src/parse/numbers.c]
  │        │           └─ ft_check_overflow(start, digits, is_negative)
  │        │               → digit-count + lexicographic comparison
  │        │                 against INT_MAX/MIN, increments data.total_nbs
  │        │
- │        └─ ft_has_number(argv[i])           
- │           → tracked across the loop; if no digit at all, error                                 
- │                       
- │                                                        
+ │        └─ ft_has_number(argv[i])
+ │           → tracked across the loop; if no digit at all, error
+ │
+ │
  ├─ ft_check_duplicate_f(&data)                                                   [src/parse/flags.c]
  │  → rejects repeated flags and more than one of simple/medium/complex/adaptive
- │           
+ │
  ├─ ft_fill_stack(argc, argv, &stack_a)                                           [src/parse/numbers.c]
  │        → second pass over argv (flags skipped, already handled above)
- │        │                    
- │        ├─ ft_atoi(&token)                                       
- │        │  → converts the now-validated token (no overflow risk at this point)                                           
- │        │                                       
+ │        │
+ │        ├─ ft_atoi(&token)
+ │        │  → converts the now-validated token (no overflow risk at this point)
+ │        │
  │        ├─ check_duplicate_n(stack_a, value)                                    [src/stack/stack_check.c]
  │        │  → aborts + clean_list on a repeated value
- │        │                                              
+ │        │
  │        └─ add_to_list(&stack_a, value)                                         [src/stack/stack_add.c]
  │           → appends into the circular doubly linked list
- │                                                       
+ │
  ├─ stacks.a = stack_a; stacks.b = NULL
  ├─ ft_assign_index(stacks.a, data.total_nbs)                                     [src/algorithms/common/utils.c]
  │  → assigns each node a rank 0..n-1 by relative value
- │ 
+ │
  ├─ ft_compute_disorder(stacks.a, &data)                                          [src/metrics/strategy.c]
  │        → writes data.disorder directly, BEFORE any move, as required
- │ 
+ │
  ├─ ft_get_strategy(&data, &stacks)                                               [src/metrics/strategy.c]
- │    ├─ --simple / --medium / --complex given 
- │    │ → forces the matching ft_sort_* directly, regardless of size or disorder 
- │    │                                             
+ │    ├─ --simple / --medium / --complex given
+ │    │ → forces the matching ft_sort_* directly, regardless of size or disorder
+ │    │
  │    ├─ no flag / --adaptive AND total_nbs small → ft_sort_small(&stacks,&data)
- │    │                                              
+ │    │
  │    └─ no flag / --adaptive, otherwise → ft_adaptive_strategy(...)
  │           └─ picks by disorder threshold, then calls the matching ft_sort_*
- │              
- │ 
+ │
+ │
  ├─ ft_sort_small / ft_sort_simple / ft_sort_medium / ft_sort_complex
  │    └─ every move goes through ft_do_op(op, &stacks, &data)
  │           ├─ executes the operation (src/operations/*) on stacks->a /stacks->b
- │           │  
+ │           │
  │           ├─ increments data.op_counter[op]
  │           └─ writes the operation name + '\n' to stdout
  │
