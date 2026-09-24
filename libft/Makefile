@@ -3,17 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maridos- <maridos-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 15:56:40 by maridos-          #+#    #+#              #
-#    Updated: 2026/09/01 22:32:20 by maridos-         ###   ########.fr        #
+#    Updated: 2026/09/24 10:36:09 by maridos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	libft.a
 CC			:=	cc
 CFLAGS		:=	-Wall -Wextra -Werror
-MAKEFLAGS	:=	--silent
 AR			:=	ar -rcs
 RM			:=	rm -rf
 

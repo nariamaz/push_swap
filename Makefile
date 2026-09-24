@@ -6,7 +6,7 @@
 #    By: maridos- <maridos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/15 15:56:40 by maridos-          #+#    #+#              #
-#    Updated: 2026/09/23 09:57:44 by maridos-         ###   ########.fr        #
+#    Updated: 2026/09/24 10:42:10 by maridos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,12 +63,9 @@ all: $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re
 
-libft:
-	$(MAKE) -C $(LIBFT_DIR)
-
-$(NAME): libft $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
 
 %.o: %.c
